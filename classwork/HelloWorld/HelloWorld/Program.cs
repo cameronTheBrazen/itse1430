@@ -7,6 +7,6 @@ class program{
        
         Console.WriteLine("What is your name?");
         string name = Console.ReadLine();
-        Console.WriteLine("Hello World!"+name);
+        Console.WriteLine("Hello World! "+name);
     }
 }
