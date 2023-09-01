@@ -31,19 +31,20 @@ void GetMovie ()
     title = ReadString("enter a title: ",true);
     genre=ReadString("enter a genre: ",true);
     description=ReadString("enter a description: ",false);
-    rating= ReadInt("enter a rating: ");
-    length= ReadInt("enter the length: ");
-
+    rating= ReadInt("enter a rating: ", 1);
+    length= ReadInt("enter the length: ",0);
+    releaseYear=ReadInt("Enter the release year", 1900);
 
 
 }
 
-int ReadInt (string message)
+int ReadInt (string message,int minimumValue)
 {
     Console.WriteLine(message);
     string value = Console.ReadLine();
     int result;
     if (Int32.TryParse(value,out result))
+        if (result >= minimumValue)
         return result;
     return 0;
 
