@@ -8,10 +8,7 @@ namespace GameField
     class adventure
     {
         
-        char _input = 'Y';
-        bool _isQuitting = true;
-        int _location = 2;
-        int _movement=2;
+    
         public void Intro ()
         {
             Console.WriteLine(" Cameron Kingsley ITSE 1430 9/5/2023");
@@ -72,7 +69,7 @@ namespace GameField
                 }
 
 
-                _location = location;
+            
 
 
             }
