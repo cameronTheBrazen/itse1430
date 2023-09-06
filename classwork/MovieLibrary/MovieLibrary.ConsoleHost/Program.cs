@@ -19,7 +19,7 @@ bool inColor = true;
 int length = 0;
 decimal budget = 0;
 int releaseYear = 1900;
-string message = "message";
+string message = "";
 
 GetMovie();
 DisplayMovie();
@@ -34,45 +34,68 @@ void GetMovie ()
     rating= ReadInt("enter a rating: ", 1);
     length= ReadInt("enter the length: ",0);
     releaseYear=ReadInt("Enter the release year", 1900);
-
+    inColor=ReadBool("In color Y/N? ");
 
 }
 
 int ReadInt (string message,int minimumValue)
 {
     Console.WriteLine(message);
-    string value = Console.ReadLine();
-    int result;
-    if (Int32.TryParse(value,out result))
-        if (result >= minimumValue)
-        return result;
-    return 0;
-
+    do
+    {
+        string value = Console.ReadLine();
+        
+        if (Int32.TryParse(value, out var result))
+            if (result >= minimumValue)
+                return result;
+        Console.WriteLine("value must be at least " + minimumValue);
+    }while(true);
 }
 
 
 string ReadString( string message, bool isRequired )
 {
+    do
+    {
+        Console.WriteLine(message);
+        string value = Console.ReadLine();
 
+        if (!isRequired || value != "")
+            return value;
+        
+        Console.WriteLine("Value is required.");
+    }while(true);
+}
 
+bool ReadBool (string message) { 
     Console.WriteLine(message);
-    string value = Console.ReadLine();
+    while (true) {
+        var value = Console.ReadLine();
+        if (value == "Y"||value == "y")
 
-    if (!isRequired)
-        return value;
-    return value;
+            return true;
+        else if (value == "N"||value == "n")
+            return false;
+        Console.WriteLine("Please enter Y or N");
+       
+        
+    
+    };
 }
 
 void DisplayMovie ()
 {
+    Console.WriteLine("---------------------------------");
     Console.WriteLine(title);
     Console.WriteLine(genre);
     Console.WriteLine(description);
-    Console.WriteLine(rating);
-    Console.WriteLine(length);
+    Console.WriteLine(rating + " stars");
+    Console.WriteLine("Run Length: " + length + "mins");
     Console.WriteLine(budget);
-    Console.WriteLine(inColor);
-    Console.WriteLine(releaseYear);
+
+    string format = inColor ? "Color" : "Black and white";
+    Console.WriteLine("Format: " + format);
+    Console.WriteLine("released" + releaseYear);
 }
 
 
