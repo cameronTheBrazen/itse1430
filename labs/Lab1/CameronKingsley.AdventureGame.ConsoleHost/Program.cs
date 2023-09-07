@@ -1,7 +1,8 @@
 ﻿//     Cameron Kingsley         //
 //      August 31, 2023         //
 //   ITSE 1430 Adventure Game   //
-
+using System;
+using System.ComponentModel.Design;
 
 namespace GameField
 {
@@ -20,48 +21,59 @@ namespace GameField
             Console.WriteLine("There is nothing else in the room");
 
         }
-
-        public int GameLoop(){
-            int movement = 2;
-            int location = 2;
-            while (location>0&& location<9) {
+        // not all code paths return a value in Gameloop
+        public static int GameLoop (ref int location){
+            
+            
+            while (location>0&& location<10) {
                Console.WriteLine("Main Menu:");
-               Console.WriteLine("5) Move North");
-               Console.WriteLine("2) Move South");
-               Console.WriteLine("3) Move East");
-               Console.WriteLine("1) Move West");
-               Console.WriteLine("9) Quit");
+               Console.WriteLine("N) Move North");
+               Console.WriteLine("S) Move South");
+               Console.WriteLine("E) Move East");
+               Console.WriteLine("W) Move West");
+               Console.WriteLine("Q) Quit");
                Console.WriteLine("Select Your Path:");
             
            
-
-                movement = Console.Read();
+                
+               char movement = Char.Parse(Console.ReadLine());
+                movement = Char.ToUpper(movement);
                 switch (movement)
                 {
-                    case 1:
-                    location = location--;
+
+                    case 'W':
+                    Console.WriteLine("You selected west.");
+                    location = location-1;
                     return location;
-                    
-                    case 2:
-                    location = location-3;
+
+
+                    case 'S':
+                    Console.WriteLine("You selected south.");
+                    location =location-3;
                     return location;
-                    
-                    case 3:
-                    location = location+1;
+                    case 'E':
+
+                    Console.WriteLine("You selected east.");
+                    location =location+1;
                     return location;
-                    
-                    case 5:
-                    location = location+3;
+
+                    case 'N':
+                    Console.WriteLine("You selected north.");
+                    location =location+3;
                     return location;
-                    
-                    case 9:
+                    case 'Q':
+
                     Console.WriteLine("Are you sure you want to quit? Y/N");
 
                     var value = Console.ReadLine();
-                    if (value == "Y"||value == "y")
+                    if (value == "Y"||value == "y") {
 
                         return 0;
-                    break;
+
+                    } else {
+                        Console.WriteLine("You have selected to continue!");
+                    return location;
+                    }
                     default:
                     Console.WriteLine("Select a direction: north,south,east, west. ");
                     return location;
@@ -79,14 +91,14 @@ namespace GameField
         static void Main ( )
         {
             bool isQuitting = false;
-
-
+            int mainLocale=2;
             adventure adventure;
             adventure = new adventure();
+
             adventure.Intro();
             var v = isQuitting;
             while (v) {
-                adventure.GameLoop();
+                adventure.GameLoop(ref mainLocale);
             }            
 
         
