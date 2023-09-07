@@ -22,12 +22,12 @@ namespace GameField
 
         }
         
-        public static int GameLoop ( ref int location )
+        public static int GameLoop ( int location, int x, int y)
         {
             
-
-            while (location>0&& location<10)
-            {
+            x=0;
+            y=0;
+            
                 Console.WriteLine("Main Menu:");
                 Console.WriteLine("N) Move North");
                 Console.WriteLine("S) Move South");
@@ -36,38 +36,45 @@ namespace GameField
                 Console.WriteLine("I) Investigate");
                 Console.WriteLine("Q) Quit");
                 Console.WriteLine("Select Your Path:");
-                break;
-            }
+                
+            
 
-            char movement = Char.Parse(Console.ReadLine());
-            movement = Char.ToUpper(movement);
+            char movement = Char.ToUpper(Char.Parse(Console.ReadLine()));
+            
+            
+            ;
             switch (movement)
             {
 
                 case 'W':
                 Console.WriteLine("You selected west.");
-                location = location+1;
-                return location;
+                x =x-1;
+                Console.WriteLine(location);
+                return  x ;
 
 
                 case 'S':
                 Console.WriteLine("You selected south.");
-                location =location+3;
-                return location;
+                y =y-1;
+                Console.WriteLine(location);
+                return y;
                 case 'E':
 
                 Console.WriteLine("You selected east.");
-                location =location-1;
-                return location;
+                x = x+1;
+                Console.WriteLine(location);
+                return  x ;
 
                 case 'N':
                 Console.WriteLine("You selected north.");
-                location =location-3;
-                return location;
+                y= y+1;
+                Console.WriteLine(location);
+                return y;
 
                 case 'I':
                 Console.WriteLine("You decided to investigate.");
-                
+
+                Console.WriteLine(location);
                 return location;
 
                 case 'Q':
@@ -78,16 +85,19 @@ namespace GameField
 
                     return 0;
 
-                } else
+                } 
+                else
                 {
                     Console.WriteLine("You have selected to continue!");
                     return location;
                 }
                 default:
-                Console.WriteLine("Select a direction: north,south,east, west. ");
+                Console.WriteLine("Select a direction: north, south, east, west. ");
+                Console.WriteLine(location);
                 return location;
 
             }
+            if (x >= 0 && x < MaxX && y >= 0 && y < MaxY)
         }
         public void RoomOne ()
         {
@@ -128,7 +138,12 @@ namespace GameField
         static void Main ()
         {
             bool isPlaying = true;
-            int mainLocale = 2;
+            int roomNumber = 2;
+            int currentX = 0;
+            int maxX = 3;
+            int currentY = 0;
+            
+
             adventure adventure;
             adventure = new adventure();
 
@@ -136,55 +151,43 @@ namespace GameField
             var v = isPlaying;
             while (v)
             {
-                adventure.GameLoop(ref mainLocale);
+                adventure.GameLoop( roomNumber,currentX,currentY);
 
-                if (mainLocale == 2 || mainLocale == 3 || mainLocale==1) {
+                roomNumber = currentX + (maxX * (currentY - 1));
 
-                }
-                if (mainLocale == 4 || mainLocale == 7 || mainLocale==1) {
-
-                }
-                if (mainLocale == 7 || mainLocale == 8 || mainLocale==9) {
-
-                }
-                if (mainLocale == 6 || mainLocale == 3 || mainLocale==9) {
-
-                }
-
-
-
-                switch (mainLocale)
+               
+                switch (roomNumber)
                 {
                     case 1:
-                        adventure.RoomOne();
+                    adventure.RoomOne();
                     break;
                     case 2:
-                        adventure.RoomTwo();    
+                    adventure.RoomTwo();
                     break;
                     case 3:
-                        adventure.RoomThree();
+                    adventure.RoomThree();
                     break;
                     case 4:
-                        adventure.RoomFour();
+                    adventure.RoomFour();
                     break;
                     case 5:
-                        adventure.RoomFive();
+                    adventure.RoomFive();
                     break;
                     case 6:
-                        adventure.RoomSix();
+                    adventure.RoomSix();
                     break;
                     case 7:
-                        adventure.RoomSeven();
+                    adventure.RoomSeven();
                     break;
                     case 8:
-                        adventure.RoomEight();
+                    adventure.RoomEight();
                     break;
                     case 9:
-                        adventure.RoomNine();
+                    adventure.RoomNine();
                     break;
-                
+
                     default:
-                        Console.WriteLine("Invalid entry.");
+                    Console.WriteLine("Invalid entry.");
                     break;
                 }
 
