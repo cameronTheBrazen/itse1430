@@ -1,4 +1,6 @@
-﻿bool isPlaying = true;
+﻿using System.Reflection.Metadata.Ecma335;
+
+bool isPlaying = true;
 int adjustedlocation=2;
 int roomNumber = 2;
 int lastRoom=2;
@@ -34,12 +36,12 @@ void roomRefactor () {
     {   
 
         adjustedlocation = roomNumber-1;
-        currentX = roomNumber-4;
-        currentY=roomNumber -3;
+        currentX = adjustedlocation-3;
+        currentY=2;
     } else if(roomNumber>8&& roomNumber <12) { 
         adjustedlocation = roomNumber-2;
-        currentX = roomNumber-8;
-        currentY=roomNumber -6;
+        currentX = adjustedlocation-6;
+        currentY=3;
     } else
     {
         adjustedlocation=roomNumber;
@@ -50,7 +52,7 @@ void roomRefactor () {
 void displayCoordinate () {
 
     Console.WriteLine("--------------------------------------------------------");
-    Console.WriteLine( "N" +currentX+ ", E"+ currentY);
+    Console.WriteLine(" You are at position:"+ "E" +currentX+ ", N"+ currentY);
     
 
 }
@@ -71,6 +73,29 @@ void InvalidChoice () {
     Console.WriteLine("          There is nothing else in the room");
 
 }
+void RandomEncounter () {
+
+    var rand= Random.Shared.Next(1, 101);
+    if( rand >5)
+    {
+        Console.WriteLine("--------------------------------------------------------");
+        Console.WriteLine("               Everything seems ok."); 
+        Console.WriteLine("--------------------------------------------------------");
+    }
+    else if (rand>=3&& rand <=5) {
+        Console.WriteLine("--------------------------------------------------------");
+        Console.WriteLine("             You hear footsteps behind you."); 
+        Console.WriteLine("--------------------------------------------------------");
+    }
+   else
+    {
+        Console.WriteLine("--------------------------------------------------------");
+        Console.WriteLine("       A shadow passes by the doorway quickly and ");
+        Console.WriteLine("  you can make out the vague shape of some large animal");
+        Console.WriteLine("--------------------------------------------------------");
+    }
+}
+
 int GameLoop ()
 {
 
@@ -163,8 +188,9 @@ int GameLoop ()
     Console.WriteLine("        There is a mirror on the south side of the");
     Console.WriteLine("       room. Two doors lie to the north and the east.");
     Console.WriteLine("          Upon the west wall is a mounted deer head.");
-    Console.WriteLine("          There is nothing else in the room ");
+    Console.WriteLine("          There is nothing else in the room. ");
     Console.WriteLine("--------------------------------------------------------");
+    RandomEncounter();
 }
  void RoomTwo ()
 {
@@ -174,8 +200,9 @@ int GameLoop ()
     Console.WriteLine("   doorways.There is a mirror on the 4th side of the");
     Console.WriteLine("  room. Upon The ground is a compass rose painted in red.");
     Console.WriteLine("           The mirror is on the south wall.");
-    Console.WriteLine("          There is nothing else in the room");
+    Console.WriteLine("          There is nothing else in the room.");
     Console.WriteLine("--------------------------------------------------------");
+    RandomEncounter();
 }
 void RoomThree ()
 {
@@ -185,12 +212,19 @@ void RoomThree ()
     Console.WriteLine("        There is a mirror on the south side of the");
     Console.WriteLine("       room. Two doors lie to the north and the west.");
     Console.WriteLine("          Upon the east wall is a stuffed bear statue.");
-    Console.WriteLine("          There is nothing else in the room ");
+    Console.WriteLine("          There is nothing else in the room. ");
     Console.WriteLine("--------------------------------------------------------");
+    RandomEncounter();
 }
  void RoomFour ()
 {
-    Console.WriteLine("room four");
+    Console.WriteLine("--------------------------------------------------------");
+    Console.WriteLine("  Upon The ground is a compass rose painted in red.     ");
+    Console.WriteLine("In the eastern corners of the room lies 2 flickering lights. ");
+    Console.WriteLine("     On the western wall is a mounted deer head.       ");
+    Console.WriteLine("     3 doors stand on the North , south , and east .  ");
+    Console.WriteLine("--------------------------------------------------------");
+    RandomEncounter();
 }
  void RoomFive ()
 {
@@ -200,29 +234,51 @@ void RoomThree ()
     Console.WriteLine("   In the center of the room lies a table covered");
     Console.WriteLine(" in taxidermy tools. Above is a large windowed ceiling.");
     Console.WriteLine("--------------------------------------------------------");
+    RandomEncounter();
 }
  void RoomSix ()
 {
-    Console.WriteLine("room six");
+    Console.WriteLine("--------------------------------------------------------");
+    Console.WriteLine("  Upon The ground is a compass rose painted in red.     ");
+    Console.WriteLine("In the western corners of the room lies 2 flickering lights. ");
+    Console.WriteLine("     On the east wall is a stuffed bear statue.       ");
+    Console.WriteLine("     3 doors stand on the North , south , and west .  ");
+    Console.WriteLine("--------------------------------------------------------");
+    RandomEncounter();
 }
  void RoomSeven ()
 {
     Console.WriteLine("--------------------------------------------------------");
     Console.WriteLine("      Upon The ground is a compass rose painted in red.");
     Console.WriteLine("       There is one flickering light in the south-east corner,");
-    Console.WriteLine("        There is a mirror on the south side of the");
+    Console.WriteLine("        There is a mirror on the north side of the");
     Console.WriteLine("       room. Two doors lie to the south and the east.");
     Console.WriteLine("          Upon the west wall is a mounted deer head.");
-    Console.WriteLine("          There is nothing else in the room ");
+    Console.WriteLine("          There is nothing else in the room. ");
     Console.WriteLine("--------------------------------------------------------");
+    RandomEncounter();
 }
  void RoomEight ()
 {
-    Console.WriteLine("room eight");
+    Console.WriteLine("--------------------------------------------------------");
+    Console.WriteLine("  Upon The ground is a compass rose painted in red.     ");
+    Console.WriteLine("In the southern corners of the room lies 2 flickering lights. ");
+    Console.WriteLine("             On the north wall is a mirror.       ");
+    Console.WriteLine("     3 doors stand on the west , south , and east .  ");
+    Console.WriteLine("--------------------------------------------------------");
+    RandomEncounter();
 }
  void RoomNine ()
 {
-    Console.WriteLine("room nine");
+    Console.WriteLine("--------------------------------------------------------");
+    Console.WriteLine("      Upon The ground is a compass rose painted in red.");
+    Console.WriteLine("   There is one flickering light in the south-west corner,");
+    Console.WriteLine("        There is a mirror on the south side of the");
+    Console.WriteLine("       room. Two doors lie to the south and the west.");
+    Console.WriteLine("          Upon the east wall is a stuffed bear statue.");
+    Console.WriteLine("          There is nothing else in the room. ");
+    Console.WriteLine("--------------------------------------------------------");
+    RandomEncounter();
 }
 
 Intro();
