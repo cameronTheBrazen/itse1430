@@ -48,26 +48,26 @@ namespace GameField
 
                 case 'W':
                 Console.WriteLine("You selected west.");
-                x =x-1;
+                x -=1;
                 Console.WriteLine(location);
                 return  x ;
 
 
                 case 'S':
                 Console.WriteLine("You selected south.");
-                y =y-1;
+                y -=1;
                 Console.WriteLine(location);
                 return y;
                 case 'E':
 
                 Console.WriteLine("You selected east.");
-                x = x+1;
+                x +=1;
                 Console.WriteLine(location);
                 return  x ;
 
                 case 'N':
                 Console.WriteLine("You selected north.");
-                y= y+1;
+                y +=1;
                 Console.WriteLine(location);
                 return y;
 
@@ -97,7 +97,7 @@ namespace GameField
                 return location;
 
             }
-            if (x >= 0 && x < MaxX && y >= 0 && y < MaxY)
+            
         }
         public void RoomOne ()
         {
@@ -139,9 +139,9 @@ namespace GameField
         {
             bool isPlaying = true;
             int roomNumber = 2;
-            int currentX = 0;
+            int currentX ;
             int maxX = 3;
-            int currentY = 0;
+            int currentY 1;
             
 
             adventure adventure;
