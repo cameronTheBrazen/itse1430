@@ -1,25 +1,32 @@
 ﻿bool isPlaying = true;
 int roomNumber = 2;
-int currentX=2;
-int maxX = 3;
-int currentY=1;
-int maxY = 3;
+int lastRoom=2;
+
 
 int calcValidation ()
 {
 
 
-    if (currentX >= 1 && currentX < maxX && currentY >= 1 && currentY < maxY)
+    if (roomNumber<= 0 || roomNumber == 4)
     { 
-       return roomNumber = currentX + (maxX * (currentY - 1));
-    }else
+        InvalidChoice();
+        roomNumber= lastRoom;
+        return roomNumber;
+    }else if (roomNumber== 8|| roomNumber>=12) {
+            InvalidChoice();
+            roomNumber= lastRoom;
+            return roomNumber;
+        }else
     {
         return roomNumber;
     }
         
 
 }
-public void Intro ()
+void InvalidChoice () {
+    Console.WriteLine("Invalid choice. Please try again");
+}
+ void Intro ()
 {
     Console.WriteLine(" Cameron Kingsley ITSE 1430 9/5/2023");
     Console.WriteLine("You awaken on the floor of a dark room.");
@@ -45,53 +52,54 @@ int GameLoop ()
     Console.WriteLine("Select Your Path:");
 
 
+    lastRoom= roomNumber;
+    char movement = Console.ReadKey(true).KeyChar;
 
-    char movement = Char.ToUpper(Char.Parse(Console.ReadLine()));
 
-
-    ;
+    
     switch (movement)
     {
-
+        case 'w':
         case 'W':
         Console.WriteLine("You selected west.");
-        currentX-=1;
+        roomNumber= roomNumber-1;
         calcValidation();
-        Console.WriteLine(roomNumber);
+        Console.WriteLine("room "+ roomNumber);
         return roomNumber;
 
-
+        case 's':
         case 'S':
         Console.WriteLine("You selected south.");
-        currentY -=1;
+        roomNumber-=4;
         calcValidation();
-        Console.WriteLine(roomNumber);
+        Console.WriteLine("room "+roomNumber);
         return roomNumber;
+        case 'e':
         case 'E':
 
         Console.WriteLine("You selected east.");
-        currentX +=1;
+        roomNumber +=1;
         calcValidation();
-        Console.WriteLine(roomNumber);
+        Console.WriteLine("room "+roomNumber);
         return roomNumber;
-
+        case 'n':
         case 'N':
         Console.WriteLine("You selected north.");
-        currentY +=1;
+        roomNumber +=4;
         calcValidation();
-        Console.WriteLine(roomNumber);
+        Console.WriteLine("room "+roomNumber);
         return roomNumber;
-
+        case 'i':
         case 'I':
         Console.WriteLine("You decided to investigate.");
 
-        Console.WriteLine(roomNumber);
+        Console.WriteLine("room "+roomNumber);
         return roomNumber;
-
+        case 'q':
         case 'Q':
         Console.WriteLine("Are you sure you want to quit? Y/N");
-        var value = Console.ReadLine();
-        if (value == "Y"||value == "y")
+        var value = Console.ReadKey(true).KeyChar;
+        if (value == 'y'||value =='Y' )
         {
 
             return 0;
@@ -103,45 +111,45 @@ int GameLoop ()
         }
         default:
         Console.WriteLine("Select a direction: north, south, east, west. ");
-        Console.WriteLine(roomNumber);
+        Console.WriteLine("room "+roomNumber);
         return roomNumber;
 
-    }
+    };
    
 }
-public void RoomOne ()
+ void RoomOne ()
 {
     Console.WriteLine("room one");
 }
-public void RoomTwo ()
+ void RoomTwo ()
 {
     Console.WriteLine("test success");
 }
-public void RoomThree ()
+ void RoomThree ()
 {
     Console.WriteLine("room three");
 }
-public void RoomFour ()
+ void RoomFour ()
 {
     Console.WriteLine("room four");
 }
-public void RoomFive ()
+ void RoomFive ()
 {
     Console.WriteLine(" room five");
 }
-public void RoomSix ()
+ void RoomSix ()
 {
     Console.WriteLine("room six");
 }
-public void RoomSeven ()
+ void RoomSeven ()
 {
     Console.WriteLine("room seven");
 }
-public void RoomEight ()
+ void RoomEight ()
 {
     Console.WriteLine("room eight");
 }
-public void RoomNine ()
+ void RoomNine ()
 {
     Console.WriteLine("room nine");
 }
@@ -152,7 +160,7 @@ while (v)
 {
    GameLoop();
 
-    roomNumber = currentX + (maxX * (currentY - 1));
+   
 
 
     switch (roomNumber)
@@ -188,7 +196,7 @@ while (v)
         default:
         Console.WriteLine("Invalid entry.");
         break;
-    }
+    };
 
 
 }
