@@ -117,16 +117,29 @@ void EditMovie ()
 
 void DeleteMovie ()
 {
-    if (!Confirm("Are you sure you want to delete the movie (Y/N)?"))
+    if (String.IsNullOrEmpty(title))
         return;
+        if (!Confirm($"Are you sure you want to delete the movie '{title}' (Y/N)?"))
+       return;
 
-    Console.WriteLine("Not implemented yet");
+    title = "";
 }
 
 //Display the movie details
 void ViewMovie ()
 {
-    //Console.WriteLine();
+
+    if (String.IsNullOrEmpty(title))
+    {
+
+        Console.WriteLine("--------------------");
+        Console.WriteLine("No movies available.");
+        return;
+    }
+    
+        
+        
+     //Console.WriteLine();
     //Console.WriteLine("--------------");
     Console.WriteLine("\n--------------");
 
@@ -134,15 +147,21 @@ void ViewMovie ()
 
     //Run Length: ## mins
     //Console.WriteLine("Run Length: " + length + " mins");
-    Console.WriteLine("Run Length: " + length.ToString() + " mins");
+   // Console.WriteLine("Run Length: " + length.ToString() + " mins");
+   // var message = String.Concat("Run Length: " + length.ToString() + " mins");
+    //var message2 = String.Join(" ","Run Length: " , length , " mins");
+    //string message2 = String.Format("Run Length:{0} mins", length);
+    string message2= $"Run Length:{length} mins";
 
+
+    Console.WriteLine(message2);
     //Released yyyy
-    Console.WriteLine("Released " + releaseYear);
+    Console.WriteLine($"Released: {releaseYear}");
 
     Console.WriteLine(genre);
 
     //MPAA Rating: 
-    Console.WriteLine("MPAA Rating: " + rating);
+    Console.WriteLine($"MPAA Rating: {rating}");
 
     //Black and White? 
     // Conditional: Eb ? Et : Ef
@@ -231,13 +250,13 @@ string ReadRating ( string message )
     do
     {
         string value = Console.ReadLine();
-        if (value == "PG")
+        if (String.Equals(value, "PG", StringComparison.CurrentCultureIgnoreCase)) 
             return "PG";
-        else if (value == "G")
+        else if (String.Equals(value, "G", StringComparison.CurrentCultureIgnoreCase))
             return "G";
-        else if (value == "PG-13")
+        else if (String.Equals(value, "PG-13", StringComparison.CurrentCultureIgnoreCase))
             return "PG-13";
-        else if (value == "R")
+        else if (String.Equals(value, "R", StringComparison.CurrentCultureIgnoreCase))
             return "R";
         //else if (value == "") // else if (value == String.Empty
         //else if (value == "" || value == null) //Don't do this
@@ -254,7 +273,7 @@ string ReadString ( string message, bool isRequired )
 
     do
     {
-        string value = Console.ReadLine();
+        string value = Console.ReadLine().Trim();
 
         if (!isRequired || !String.IsNullOrEmpty(value))
             return value;
