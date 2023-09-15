@@ -165,7 +165,7 @@ int GameLoop ()
         if (value == 'y'||value =='Y' )
         {
 
-           return 0;
+            return 0;
 
         } else
         {

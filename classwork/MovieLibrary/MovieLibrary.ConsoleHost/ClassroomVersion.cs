@@ -5,40 +5,30 @@
 // Operations: Add, edit, view, delete
 
 //Movie details
-string title = "", description = "";
-string genre = "", rating = "";
 
-int length = 0, releaseYear = 1900;
-bool isBlackAndWhite = false;
+// REMOVE VARIABLES
+using MovieLibrary;
 
-//Not using
-//decimal budget = 125.45M;
-
-//Entry point
+Movie movie = new Movie();
+//program entry point
 var done = false;
 do
 {
-    //int command = DisplayMenu();
-    //if (command == 1)
-    //    AddMovie();
-    //else if (command == 2)
-    //    EditMovie();
-    //else if (command == 3)
-    //    DeleteMovie();
-    //else if (command == 4)
-    //    ViewMovie();
-    //else if (command == 0)
-    //    done = true;
+
     switch (DisplayMenu())
     {
-        case 1: AddMovie(); break;
-        case 2: EditMovie(); break;
-        case 3: DeleteMovie(); break;
-        case 4: ViewMovie(); break;
-        case 0:
+        case MenuCommand.Add: movie = AddMovie(); break;
+        case MenuCommand.Edit: EditMovie(); break;
+        case MenuCommand.Delete: {
+            if (DeleteMovie(movie))
+                movie= new Movie();
+            break;
+        }
+        case MenuCommand.View: ViewMovie(movie); break;
+        case MenuCommand.Quit:
         {
             done = true;
-            //Do more stuff here
+
             break;
         };
 
@@ -46,9 +36,8 @@ do
     };
 } while (!done);
 
-/// Functions
 
-int DisplayMenu ()
+MenuCommand DisplayMenu ()
 {
     Console.WriteLine("-----------");
     Console.WriteLine("A)dd Movie");
@@ -59,55 +48,36 @@ int DisplayMenu ()
 
     do
     {
-        //var input = Console.ReadLine();
-        //if (input == "A" || input == "a")
-        //    return 1;
-        //else if (input == "E" || input == "e")
-        //    return 2;
-        //else if (input == "D" || input == "d")
-        //    return 3;
-        //else if (input == "V" || input == "v")
-        //    return 4;
-        //else if (input == "Q" || input == "q")
-        //    return 0;
+
         switch (Console.ReadKey(true).Key)
         {
-            //case "A": //return 1;
-            //case "a": return 1;
-            case ConsoleKey.A: return 1;
+            case ConsoleKey.A: return MenuCommand.Add;
 
-            //case "E": //return 2;
-            //case "e": return 2;
-            case ConsoleKey.E: return 2;
+            case ConsoleKey.E: return MenuCommand.Edit;
 
-            //case "D": //return 3;
-            //case "d": return 3;
-            case ConsoleKey.D: return 3;
+            case ConsoleKey.D: return MenuCommand.Delete;
 
-            //case "V": //return 4;
-            //case "v": return 4;
-            case ConsoleKey.V: return 4;
+            case ConsoleKey.V: return MenuCommand.View;
 
-            //case "Q": //return 0;
-            //case "q": return 0;
-            case ConsoleKey.Q: return 0;
+            case ConsoleKey.Q: return MenuCommand.Quit;
         };
     } while (true);
 }
 
-//Get a new movie
-void AddMovie ()
+Movie AddMovie ()
 {
-    title = ReadString("Enter a title: ", true);
-    description = ReadString("Enter a description: ", false);
+    var movie = new Movie ();
+    movie.title = ReadString("Enter a title: ", true);
+    movie.description = ReadString("Enter a description: ", false);
 
-    length = ReadInt("Enter the run length (in mins): ", 0);
-    releaseYear = ReadInt("Enter the release year: ", 1900);
+    movie.length = ReadInt("Enter the run length (in mins): ", 0);
+    movie.releaseYear = ReadInt("Enter the release year: ", 1900);
 
-    genre = ReadString("Enter a genre: ", false);
-    rating = ReadRating("Enter a rating: ");
+    movie.genre = ReadString("Enter a genre: ", false);
+    movie.rating = ReadRating("Enter a rating: ");
 
-    isBlackAndWhite = ReadBoolean("Black and White (Y/N)?");
+    movie.isBlackAndWhite = ReadBoolean("Black and White (Y/N)?");
+    return movie;
 }
 
 void EditMovie ()
@@ -115,68 +85,38 @@ void EditMovie ()
     Console.WriteLine("Not implemented yet");
 }
 
-void DeleteMovie ()
+bool DeleteMovie (Movie movie)
 {
-    if (String.IsNullOrEmpty(title))
-        return;
-        if (!Confirm($"Are you sure you want to delete the movie '{title}' (Y/N)?"))
-       return;
-
-    title = "";
+    if (String.IsNullOrEmpty(movie.title))
+        return false;
+    if (!Confirm($"Are you sure you want to delete the movie '{movie.title}' (Y/N)?"))
+        return false;
+    //TODO: DELETE MOVIE
+    //movie.title = "";
+    return true;
 }
 
 //Display the movie details
-void ViewMovie ()
+void ViewMovie (Movie movie)
 {
 
-    if (String.IsNullOrEmpty(title))
+    if (String.IsNullOrEmpty(movie.title))
     {
 
         Console.WriteLine("--------------------");
         Console.WriteLine("No movies available.");
         return;
     }
-    
-        
-        
-     //Console.WriteLine();
-    //Console.WriteLine("--------------");
     Console.WriteLine("\n--------------");
-
-    Console.WriteLine(title);
-
-    //Run Length: ## mins
-    //Console.WriteLine("Run Length: " + length + " mins");
-   // Console.WriteLine("Run Length: " + length.ToString() + " mins");
-   // var message = String.Concat("Run Length: " + length.ToString() + " mins");
-    //var message2 = String.Join(" ","Run Length: " , length , " mins");
-    //string message2 = String.Format("Run Length:{0} mins", length);
-    string message2= $"Run Length:{length} mins";
-
-
+    Console.WriteLine(movie.title);
+    string message2 = $"Run Length:{movie.length} mins";
     Console.WriteLine(message2);
-    //Released yyyy
-    Console.WriteLine($"Released: {releaseYear}");
-
-    Console.WriteLine(genre);
-
-    //MPAA Rating: 
-    Console.WriteLine($"MPAA Rating: {rating}");
-
-    //Black and White? 
-    // Conditional: Eb ? Et : Ef
-    //string format = "Color";
-    //if (isBlackAndWhite)
-    //    format = "Black and White";
-
-    //V2
-    string format = isBlackAndWhite ? "Black and White" : "Color";
+    Console.WriteLine($"Released: {movie.releaseYear}");
+    Console.WriteLine(movie.genre);
+    Console.WriteLine($"MPAA Rating: {movie.rating}");
+    string format = movie.isBlackAndWhite ? "Black and White" : "Color";
     Console.WriteLine("Format: " + format);
-
-    //V3
-    //Console.WriteLine("Format: " + (isBlackAndWhite ? "Black and White" : "Color"));
-
-    Console.WriteLine(description);
+    Console.WriteLine(movie.description);
 }
 
 bool Confirm ( string message )
@@ -184,9 +124,6 @@ bool Confirm ( string message )
     return ReadBoolean(message);
 }
 
-//Functions run in isolation
-// Parameters - Getting data into a function
-// Return type - Getting data out of a function
 bool ReadBoolean ( string message )
 {
     Console.WriteLine(message);
@@ -194,32 +131,15 @@ bool ReadBoolean ( string message )
     //Handle errors
     while (true)
     {
-        //string value = Console.ReadLine();
-        //var value = Console.ReadLine();
-        //if (value == "Y" || value == "y")
-        //    return true;
-        //else if (value == "N" || value == "n")  // value == "N" || "n"
-        //    return false;
+
         switch (Console.ReadKey(true).Key)
         {
-            //case "Y":
-            //case "y": return true;
+
             case ConsoleKey.Y: return true;
 
             case ConsoleKey.N: return false;
-            //case "N":
-            //case "n": return false;            
+
         };
-
-        //Console.WriteLine("Please enter Y/N");
-
-        ////Stops current iteration, exits loop
-        //if (false)
-        //    break;
-
-        ////Stops current iteration, loops around and tries again
-        //if (false)
-        //    continue;
     };
 }
 
@@ -231,10 +151,7 @@ int ReadInt ( string message, int minimumValue )
     {
         string value = Console.ReadLine();
 
-        //NOT SAFE
-        //int result = Int32.Parse(value);
-        //int result;
-        //if (Int32.TryParse(value, out result))
+
         if (Int32.TryParse(value, out var result))
             if (result >= minimumValue)
                 return result;
@@ -250,7 +167,7 @@ string ReadRating ( string message )
     do
     {
         string value = Console.ReadLine();
-        if (String.Equals(value, "PG", StringComparison.CurrentCultureIgnoreCase)) 
+        if (String.Equals(value, "PG", StringComparison.CurrentCultureIgnoreCase))
             return "PG";
         else if (String.Equals(value, "G", StringComparison.CurrentCultureIgnoreCase))
             return "G";
@@ -258,8 +175,7 @@ string ReadRating ( string message )
             return "PG-13";
         else if (String.Equals(value, "R", StringComparison.CurrentCultureIgnoreCase))
             return "R";
-        //else if (value == "") // else if (value == String.Empty
-        //else if (value == "" || value == null) //Don't do this
+
         else if (String.IsNullOrEmpty(value))
             return "";
 
@@ -277,17 +193,20 @@ string ReadString ( string message, bool isRequired )
 
         if (!isRequired || !String.IsNullOrEmpty(value))
             return value;
-        //if (!isRequired)
-        //    return value;
 
-        ////Is it empty?
-        //if (value != "")
-        //    return value;
 
         Console.WriteLine("Value is required");
     } while (true);
 }
 
+enum MenuCommand
+{
+    Add = 1,
+    Edit = 2,
+    Delete = 3,
+    View = 4,
+    Quit = 0
+};
 #region Demo Code
 
 //void Demo ()
