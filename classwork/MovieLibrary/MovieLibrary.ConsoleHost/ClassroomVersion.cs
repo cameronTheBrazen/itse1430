@@ -19,7 +19,8 @@ do
     {
         case MenuCommand.Add: movie = AddMovie(); break;
         case MenuCommand.Edit: EditMovie(); break;
-        case MenuCommand.Delete: {
+        case MenuCommand.Delete:
+        {
             if (DeleteMovie(movie))
                 movie= new Movie();
             break;
@@ -66,7 +67,7 @@ MenuCommand DisplayMenu ()
 
 Movie AddMovie ()
 {
-    var movie = new Movie ();
+    var movie = new Movie();
     movie.title = ReadString("Enter a title: ", true);
     movie.description = ReadString("Enter a description: ", false);
 
@@ -77,15 +78,19 @@ Movie AddMovie ()
     movie.rating = ReadRating("Enter a rating: ");
 
     movie.isBlackAndWhite = ReadBoolean("Black and White (Y/N)?");
+    var error= movie.Validate();
+    if (String.IsNullOrEmpty(error)) ;
     return movie;
-}
+    Console.WriteLine($"ERROR: {error}");
+} while (true) ;
+
 
 void EditMovie ()
 {
     Console.WriteLine("Not implemented yet");
 }
 
-bool DeleteMovie (Movie movie)
+bool DeleteMovie ( Movie movie )
 {
     if (String.IsNullOrEmpty(movie.title))
         return false;
@@ -97,7 +102,7 @@ bool DeleteMovie (Movie movie)
 }
 
 //Display the movie details
-void ViewMovie (Movie movie)
+void ViewMovie ( Movie movie )
 {
 
     if (String.IsNullOrEmpty(movie.title))
@@ -123,7 +128,9 @@ bool Confirm ( string message )
 {
     return ReadBoolean(message);
 }
-
+///<summary>reads a boolean</summary>
+/// <param name="message">messsage to show</param>
+/// <returns> true if value was true  otherwise false</returns>
 bool ReadBoolean ( string message )
 {
     Console.WriteLine(message);
