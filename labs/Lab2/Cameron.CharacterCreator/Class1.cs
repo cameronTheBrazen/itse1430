@@ -11,7 +11,8 @@
             Elf = 2,
             Gnome = 3,
             Human = 4,
-            Gnoll = 5
+            Gnoll = 5,
+            InvalidChoice = 0
         };
         public enum CharacterClass
         {
@@ -22,11 +23,13 @@
             Mage = 5,
             Wizard = 6,
             SpellSword = 7,
-            ShieldWarden = 8
+            ShieldWarden = 8,
+            InvalidChoice = 0
         };
         private Character.CharacterRace _selectedRace;
         public CharacterRace SelectedRace { get => _selectedRace; set => _selectedRace=value; }
-
+        private Character.CharacterClass _selectedClass;
+        public CharacterClass SelectedClass { get; set; }
         private int _strength = 1;
         /// <summary>
         /// Strength Stat for character
@@ -59,7 +62,9 @@
         /// </summary>
         public int Charisma { get; set; }
 
-
+        /// <summary>
+        /// Sets base stats 
+        /// </summary>
         private void PaladinBase ()
         {
             Strength=60;
@@ -71,6 +76,9 @@
 
 
         }
+        /// <summary>
+        /// Sets base stats 
+        /// </summary>
         private void ClericBase ()
         {
             Strength=40;
@@ -82,7 +90,9 @@
 
 
         }
-
+        /// <summary>
+        /// Sets base stats 
+        /// </summary>
         private void WarriorBase ()
         {
             Strength= 100;
@@ -94,6 +104,9 @@
 
 
         }
+        /// <summary>
+        /// Sets base stats 
+        /// </summary>
         private void RogueBase ()
         {
             Strength= 10;
@@ -105,6 +118,9 @@
 
 
         }
+        /// <summary>
+        /// Sets base stats 
+        /// </summary>
         private void MageBase ()
         {
             Strength= 10;
@@ -116,6 +132,9 @@
 
 
         }
+        /// <summary>
+        /// Sets base stats 
+        /// </summary>
         private void WizardBase ()
         {
             Strength= 10;
@@ -127,6 +146,9 @@
 
 
         }
+        /// <summary>
+        /// Sets base stats 
+        /// </summary>
         private void SpellSwordBase ()
         {
             Strength= 10;
@@ -138,7 +160,9 @@
 
 
         }
-
+        /// <summary>
+        /// Sets base stats 
+        /// </summary>
         private void ShieldWardenBase ()
         {
             Strength= 40;
@@ -173,7 +197,7 @@
                     valid=true;
                     return Character.CharacterClass.SpellSword;
                     case ConsoleKey.D: valid=true; return Character.CharacterClass.ShieldWarden;
-                    default: valid=false; Console.WriteLine("Invalid Choice"); break;
+                    default: valid=false; Console.WriteLine("Invalid Choice"); return CharacterClass.InvalidChoice;
 
 
                 }
@@ -181,8 +205,24 @@
         }
 
 
+        public Character.CharacterRace SelectRace ()
+        {
 
-
+            bool valid;
+            do
+            {
+                // add character; quit; 
+                switch (Console.ReadKey(true).Key)
+                {
+                    case ConsoleKey.D: valid=true; return Character.CharacterRace.Dwarf;
+                    case ConsoleKey.E: valid=true; return Character.CharacterRace.Elf;
+                    case ConsoleKey.G: valid=true; return Character.CharacterRace.Gnome;
+                    case ConsoleKey.H: valid=true; return Character.CharacterRace.Human;
+                    case ConsoleKey.X: valid=true; return Character.CharacterRace.Gnoll;
+                    default: valid=false; Console.WriteLine("Invalid Choice"); return CharacterRace.InvalidChoice;
+                }
+            } while (valid==false);
+        }
 
 
 
