@@ -21,11 +21,12 @@
             SpellSword=7,
             ShieldWarden=8
         };
-        private int strength = 1;
-        public int Strength { get { return strength; } set { strength = value; } }
-        private int intelligence = 1;   
-        public int Intelligence { get { return intelligence; } set { intelligence = value; } }
-        private int defense = 1;
+        private int _strength = 1;
+        public int Strength { get { return _strength; } set { _strength = value; } }
+        private int _intelligence = 1;   
+        public int Intelligence { get { return _intelligence; } set { _intelligence = value; } }
+        private int _defense = 1;
+        public int Defense { get { return _defense; } set { _defense = value; } }
         private int agility = 1;
         private int constitution = 1;
         private int charisma = 1;
