@@ -1,4 +1,7 @@
-﻿namespace Cameron.CharacterCreator
+﻿// Cameron kingsley
+//9/23/2023
+//ITSE1430S
+namespace Cameron.CharacterCreator
 {
     public class Character
     {

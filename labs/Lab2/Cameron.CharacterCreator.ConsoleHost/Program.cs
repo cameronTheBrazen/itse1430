@@ -1,4 +1,10 @@
-﻿using Cameron.CharacterCreator;
+﻿// Cameron kingsley
+//9/23/2023
+//ITSE1430
+
+
+
+using Cameron.CharacterCreator;
 
 class Program
 {
