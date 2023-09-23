@@ -25,6 +25,9 @@ class Program
 
 
     }
+    /// <summary>
+    /// main loop and functionality of character creation
+    /// </summary>
     void CreationLoop ()
     {
         int menuInput;
@@ -81,14 +84,14 @@ class Program
                 switch (Console.ReadKey(true).Key)
                 {
 
-                    case ConsoleKey.Y: Environment.Exit(0);break;
+                    case ConsoleKey.Y: Environment.Exit(0); break;
 
                     case ConsoleKey.N: break;
 
                 };
 
 
-                
+
                 break;
                 case ConsoleKey.E:
                 if (characterIsCreated==true)
@@ -99,11 +102,29 @@ class Program
                 default:
                 Console.WriteLine("Invalid choice. Please try again.");
                 break;
+                case ConsoleKey.D:
+                if (characterIsCreated==true)
+                {
+                    Console.WriteLine($"Are you sure you want to Delete {character.CharacterName}?\n Y)yes \n N)no");
+                    switch (Console.ReadKey(true).Key)
+                    {
+
+                        case ConsoleKey.Y: character.DeleteCharacter();characterIsCreated=false; break;
+
+                        case ConsoleKey.N: break;
+
+                    }
+
+                }
+                break;
             }
 
         }
     }
-
+    /// <summary>
+    /// interface method to select character race
+    /// </summary>
+    /// <param name="character"></param>
     void DisplayRaceMenu ( Character character )
     {
         Console.WriteLine("----------------");
@@ -116,9 +137,12 @@ class Program
         Console.WriteLine(" H) Human");
         Console.WriteLine(" X) Gnoll");
 
-         character.SelectRace();
+        character.SelectRace();
     }
-
+    /// <summary>
+    /// interface method to select class of character
+    /// </summary>
+    /// <param name="character"></param>
     void DisplayClassMenu ( Character character )
     {
         Console.WriteLine("----------------");
@@ -137,7 +161,10 @@ class Program
 
         character.SelectClass();
     }
-
+    /// <summary>
+    /// interface method to view main menu
+    /// </summary>
+    /// <param name="characterIsCreated"></param>
     void DisplayMainMenu ( bool characterIsCreated )
     {
         if (characterIsCreated==false)
@@ -151,14 +178,19 @@ class Program
         {
             Console.WriteLine("----------------");
             Console.WriteLine("Main Menu");
-            Console.WriteLine("----------------");
+            Console.WriteLine("-----------" +
+                "-----");
             Console.WriteLine("A)Add Character");
             Console.WriteLine("V) View Character");
             Console.WriteLine("E) Edit Stats");
+            Console.WriteLine("D) Delete Character");
             Console.WriteLine("Q) Exit");
         }
     }
-
+    /// <summary>
+    /// interface method to view character stats
+    /// </summary>
+    /// <param name="character"></param>
     void ViewCharacter ( Character character )
     {
 
@@ -174,6 +206,10 @@ class Program
         Console.WriteLine($"Charisma:     {character.Charisma}");
         Console.WriteLine($"Availble Status Points:         {character.FreeStatusPoints}");
     }
+    /// <summary>
+    /// interface method for stat modification
+    /// </summary>
+    /// <param name="character"></param>
     void EditStats ( Character character )
     {
         bool backingUp = false;

@@ -75,7 +75,7 @@ namespace Cameron.CharacterCreator
         /// Charisma Stat for character
         /// </summary>
         public int Charisma { get; set; }
-        private int _maxStatusPoints = 300;
+
         private int _freeStatusPoints = 0;
         /// <summary>
         /// available status points to edit character
@@ -194,7 +194,10 @@ namespace Cameron.CharacterCreator
 
 
         }
-
+        /// <summary>
+        /// method for character name creation
+        /// </summary>
+        /// <returns></returns>
         public string CreateName ()
         {
             bool nullName = true;
@@ -215,7 +218,9 @@ namespace Cameron.CharacterCreator
 
             return CharacterName;
         }
-
+        /// <summary>
+        /// method for class selection
+        /// </summary>
         public void SelectClass ()
         {
             bool valid = false;
@@ -243,7 +248,9 @@ namespace Cameron.CharacterCreator
             } while (valid==false);
         }
 
-
+        /// <summary>
+        /// method for race selection
+        /// </summary>
         public void SelectRace ()
         {
 
@@ -262,8 +269,12 @@ namespace Cameron.CharacterCreator
                 }
             } while (valid==false);
         }
-
-        public void ReduceStats ( bool backingUp ) {
+        /// <summary>
+        /// method to reduce status points on selected stat
+        /// </summary>
+        /// <param name="backingUp"></param>
+        public void ReduceStats ( bool backingUp )
+        {
             switch (Console.ReadKey(true).Key)
             {
                 case ConsoleKey.S: if (Strength>=10) { Strength=Strength- 10; break; } else { break; }
@@ -279,7 +290,9 @@ namespace Cameron.CharacterCreator
 
         }
 
-
+        /// <summary>
+        /// free status point validation
+        /// </summary>
         private void CalcPoints ()
         {
             FreeStatusPoints= 300- Strength- Intelligence- Defense-Agility-Constitution- Charisma;
@@ -289,7 +302,10 @@ namespace Cameron.CharacterCreator
 
         }
 
-
+        /// <summary>
+        /// method to increase status points on selected stat
+        /// </summary>
+        /// <param name="backingUp"></param>
         public void IncreaseStats ( bool backingUp )
         {
             switch (Console.ReadKey(true).Key)
@@ -305,5 +321,22 @@ namespace Cameron.CharacterCreator
 
 
         }
+        /// <summary>
+        /// method to delete character
+        /// </summary>
+        public void DeleteCharacter ()
+        {
+            CharacterName="";
+            SelectedRace=0;
+            SelectedClass=0;
+            Strength=0;
+            Intelligence=0;
+            Defense= 0;
+            Agility=0;
+            Constitution= 0;
+            Charisma=0;
+
+        }
+
     }
 }
