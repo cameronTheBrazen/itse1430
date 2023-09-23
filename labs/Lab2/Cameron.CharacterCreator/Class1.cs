@@ -1,6 +1,6 @@
 ﻿// Cameron kingsley
 //9/23/2023
-//ITSE1430S
+//ITSE1430
 namespace Cameron.CharacterCreator
 {
     public class Character
