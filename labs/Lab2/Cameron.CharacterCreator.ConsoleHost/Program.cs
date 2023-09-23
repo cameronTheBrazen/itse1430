@@ -13,62 +13,91 @@ class Program
 
 
 
-        Character character = null;
-        bool characterIsCreated = false;
-        int menuInput;
+        CreationLoop();
 
+
+
+
+    }
+    void CreationLoop ()
+    {
+        int menuInput;
+        Character character = new Character();
+        bool characterIsCreated = false;
         while (true)
         {
-            DisplayMainMenu();
+            DisplayMainMenu(characterIsCreated);
 
             // Read and validate user input for the main menu
-            if (Int32.TryParse(Console.ReadLine(), out menuInput))
+
+            switch (Console.ReadKey(true).Key)
             {
-                switch (menuInput)
+                case ConsoleKey.V:
+                if (characterIsCreated==true)
                 {
-                    case 1:
-                    if (characterIsCreated==true)
-                    {
-                        // View the character
-                        Console.Clear();
-                        Console.WriteLine("Character Details:");
-                        Console.WriteLine($"Race: {character.SelectedRace}");
-                        Console.WriteLine($"Class: {character.SelectClass()}");
-
-
-                        Console.ReadLine();
-                        break;
-                    }
+                    // View the character
+                    ViewCharacter(character);
+                    break;
+                } else
+                {
                     Console.WriteLine("Invalid choice"); break;
-                    case 2:
-                    if (!characterIsCreated)
+                }
+                case ConsoleKey.A:
+                if (characterIsCreated==false)
+                {
+                    character = new Character();
+                    character.CreateName();
+                    DisplayRaceMenu(character);
+
+                    DisplayClassMenu(character);
+                    if (character.SelectedClass==0)
                     {
-                        character = new Character();
-                        DisplayRaceMenu(character);
-                        DisplayClassMenu(character);
-                        characterIsCreated = true;
+                        Console.WriteLine("Class invalid");
+                        characterIsCreated = false; break;
+                    } else if (character.SelectedRace==0)
+                    {
+                        Console.WriteLine("Race invalid");
                     } else
                     {
-                        Console.WriteLine("Character already created!");
-
-                        Console.ReadLine();
+                        Console.WriteLine("Character Created!");
+                        characterIsCreated = true; break;
                     }
-                    break;
+                } else
+                {
+                    Console.WriteLine("Character already created!");
 
-                    case 3:
-                    Environment.Exit(0);
-                    break;
 
-                    default:
-                    Console.WriteLine("Invalid choice. Please try again.");
-                    break;
                 }
-            } else
-            {
-                Console.WriteLine("Invalid input. Please enter a valid menu option.");
+                break;
+
+                case ConsoleKey.Q:
+                Console.WriteLine("Are you sure you want to quit?\n Y)yes \n N)no");
+                switch (Console.ReadKey(true).Key)
+                {
+
+                    case ConsoleKey.Y: Environment.Exit(0);break;
+
+                    case ConsoleKey.N: break;
+
+                };
+
+
+                
+                break;
+                case ConsoleKey.E:
+                if (characterIsCreated==true)
+                {
+                    EditStats(character);
+                    break;
+                } else { break; }
+                default:
+                Console.WriteLine("Invalid choice. Please try again.");
+                break;
             }
+
         }
     }
+
     void DisplayRaceMenu ( Character character )
     {
         Console.WriteLine("----------------");
@@ -81,7 +110,7 @@ class Program
         Console.WriteLine(" H) Human");
         Console.WriteLine(" X) Gnoll");
 
-        character.SelectRace();
+         character.SelectRace();
     }
 
     void DisplayClassMenu ( Character character )
@@ -103,15 +132,59 @@ class Program
         character.SelectClass();
     }
 
-    void DisplayMainMenu ()
+    void DisplayMainMenu ( bool characterIsCreated )
     {
-        Console.WriteLine("----------------");
-        Console.WriteLine("Main Menu");
-        Console.WriteLine("----------------");
-        Console.WriteLine("1)Add Character");
-        Console.WriteLine("2) Exit");
-        Console.WriteLine("");
-        Console.WriteLine("");
+        if (characterIsCreated==false)
+        {
+            Console.WriteLine("----------------");
+            Console.WriteLine("Main Menu");
+            Console.WriteLine("----------------");
+            Console.WriteLine("A)Add Character");
+            Console.WriteLine("Q) Exit");
+        } else
+        {
+            Console.WriteLine("----------------");
+            Console.WriteLine("Main Menu");
+            Console.WriteLine("----------------");
+            Console.WriteLine("A)Add Character");
+            Console.WriteLine("V) View Character");
+            Console.WriteLine("E) Edit Stats");
+            Console.WriteLine("Q) Exit");
+        }
     }
+
+    void ViewCharacter ( Character character )
+    {
+
+        Console.WriteLine("Character Details:");
+        Console.WriteLine($"Name:   {character.CharacterName}");
+        Console.WriteLine($"Race:  {character.SelectedRace}");
+        Console.WriteLine($"Class: {character.SelectedClass}");
+        Console.WriteLine($"Strength:     {character.Strength}");
+        Console.WriteLine($"Intelligence: {character.Intelligence}");
+        Console.WriteLine($"Defense:      {character.Defense}");
+        Console.WriteLine($"Agility:      {character.Agility}");
+        Console.WriteLine($"Constitution: {character.Constitution}");
+        Console.WriteLine($"Charisma:     {character.Charisma}");
+        Console.WriteLine($"Availble Status Points:         {character.FreeStatusPoints}");
+    }
+    void EditStats ( Character character )
+    {
+        bool backingUp = false;
+        while (backingUp==false)
+        {
+            Console.WriteLine("select a Stat to reduce.");
+            Console.WriteLine(" S)Strength\n I)Intelligence\n D)Defense \n A)Agility \n C)Constitution\n M)Charisma\n Q)GO BACK");
+            character.ReduceStats(backingUp);
+            ViewCharacter(character);
+        }
+        while (backingUp==false)
+        {
+            Console.WriteLine("select a Stat to increase.");
+            character.IncreaseStats(backingUp);
+        }
+    }
+
+
 
 }

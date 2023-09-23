@@ -26,9 +26,20 @@
             ShieldWarden = 8,
             InvalidChoice = 0
         };
+        private string _characterName = "";
+        /// <summary>
+        /// Character's Name
+        /// </summary>
+        public string CharacterName { get; set; }
         private Character.CharacterRace _selectedRace;
+        /// <summary>
+        /// Character race
+        /// </summary>
         public CharacterRace SelectedRace { get => _selectedRace; set => _selectedRace=value; }
         private Character.CharacterClass _selectedClass;
+        /// <summary>
+        /// Character class
+        /// </summary>
         public CharacterClass SelectedClass { get; set; }
         private int _strength = 1;
         /// <summary>
@@ -61,6 +72,12 @@
         /// Charisma Stat for character
         /// </summary>
         public int Charisma { get; set; }
+        private int _maxStatusPoints = 300;
+        private int _freeStatusPoints = 0;
+        /// <summary>
+        /// available status points to edit character
+        /// </summary>
+        public int FreeStatusPoints { get; set; }
 
         /// <summary>
         /// Sets base stats 
@@ -175,29 +192,48 @@
 
         }
 
-
-
-        public Character.CharacterClass SelectClass ()
+        public string CreateName ()
         {
-            bool valid = true;
+            bool nullName = true;
+            while (nullName==true)
+            {
+                Console.WriteLine(" Enter Your Characters Name ");
+                CharacterName= Console.ReadLine();
+                if (String.IsNullOrEmpty(CharacterName))
+                {
+
+                    nullName= true;
+                } else
+                {
+                    nullName= false;
+                }
+            }
+
+
+            return CharacterName;
+        }
+
+        public void SelectClass ()
+        {
+            bool valid = false;
             // add character; quit; 
             do
             {
                 switch (Console.ReadKey(true).Key)
                 {
-                    case ConsoleKey.P: valid=true; return Character.CharacterClass.Paladin;
-                    case ConsoleKey.C: valid=true; return Character.CharacterClass.Cleric;
-                    case ConsoleKey.W: valid=true; return Character.CharacterClass.Warrior;
-                    case ConsoleKey.R: valid=true; return Character.CharacterClass.Rogue;
-                    case ConsoleKey.M: valid=true; return Character.CharacterClass.Mage;
+                    case ConsoleKey.P: valid=true; SelectedClass= Character.CharacterClass.Paladin; PaladinBase(); break;
+                    case ConsoleKey.C: valid=true; SelectedClass= Character.CharacterClass.Cleric; ClericBase(); break;
+                    case ConsoleKey.W: valid=true; SelectedClass= Character.CharacterClass.Warrior; WarriorBase(); break;
+                    case ConsoleKey.R: valid=true; SelectedClass= Character.CharacterClass.Rogue; RogueBase(); break;
+                    case ConsoleKey.M: valid=true; SelectedClass= Character.CharacterClass.Mage; MageBase(); break;
                     case ConsoleKey.Z:
                     valid=true;
-                    return Character.CharacterClass.Wizard;
+                    SelectedClass= Character.CharacterClass.Wizard; WizardBase(); break;
                     case ConsoleKey.S:
                     valid=true;
-                    return Character.CharacterClass.SpellSword;
-                    case ConsoleKey.D: valid=true; return Character.CharacterClass.ShieldWarden;
-                    default: valid=false; Console.WriteLine("Invalid Choice"); return CharacterClass.InvalidChoice;
+                    SelectedClass= Character.CharacterClass.SpellSword; SpellSwordBase(); break;
+                    case ConsoleKey.D: valid=true; SelectedClass= Character.CharacterClass.ShieldWarden; ShieldWardenBase(); break;
+                    default: valid=false; Console.WriteLine("Invalid Choice"); SelectedClass= Character.CharacterClass.InvalidChoice; break;
 
 
                 }
@@ -205,7 +241,7 @@
         }
 
 
-        public Character.CharacterRace SelectRace ()
+        public void SelectRace ()
         {
 
             bool valid;
@@ -214,17 +250,57 @@
                 // add character; quit; 
                 switch (Console.ReadKey(true).Key)
                 {
-                    case ConsoleKey.D: valid=true; return Character.CharacterRace.Dwarf;
-                    case ConsoleKey.E: valid=true; return Character.CharacterRace.Elf;
-                    case ConsoleKey.G: valid=true; return Character.CharacterRace.Gnome;
-                    case ConsoleKey.H: valid=true; return Character.CharacterRace.Human;
-                    case ConsoleKey.X: valid=true; return Character.CharacterRace.Gnoll;
-                    default: valid=false; Console.WriteLine("Invalid Choice"); return CharacterRace.InvalidChoice;
+                    case ConsoleKey.D: valid=true; SelectedRace= Character.CharacterRace.Dwarf; break;
+                    case ConsoleKey.E: valid=true; SelectedRace= Character.CharacterRace.Elf; break;
+                    case ConsoleKey.G: valid=true; SelectedRace= Character.CharacterRace.Gnome; break;
+                    case ConsoleKey.H: valid=true; SelectedRace= Character.CharacterRace.Human; break;
+                    case ConsoleKey.X: valid=true; SelectedRace= Character.CharacterRace.Gnoll; break;
+                    default: valid=false; Console.WriteLine("Invalid Choice"); SelectedRace= Character.CharacterRace.InvalidChoice; break;
                 }
             } while (valid==false);
         }
 
+        public void ReduceStats ( bool backingUp ) {
+            switch (Console.ReadKey(true).Key)
+            {
+                case ConsoleKey.S: if (Strength>=10) { Strength=Strength- 10; break; } else { break; }
+                case ConsoleKey.I: if (Intelligence>=10) { Intelligence=Intelligence- 10; break; } else { break; }
+                case ConsoleKey.D: if (Defense>=10) { Defense=Defense- 10; break; } else { break; }
+                case ConsoleKey.A: if (Agility>=10) { Agility=Agility- 10; break; } else { break; }
+                case ConsoleKey.C: if (Constitution>=10) { Constitution=Constitution- 10; break; } else { break; }
+                case ConsoleKey.M: if (Charisma>=10) { Charisma=Charisma- 10; break; } else { break; }
+                case ConsoleKey.Q: backingUp = true; break;
+            }
+
+            CalcPoints();
+
+        }
 
 
+        private void CalcPoints ()
+        {
+            FreeStatusPoints= 300- Strength- Intelligence- Defense-Agility-Constitution- Charisma;
+
+
+
+
+        }
+
+
+        public void IncreaseStats ( bool backingUp )
+        {
+            switch (Console.ReadKey(true).Key)
+            {
+                case ConsoleKey.S: if (Strength<=90) { Strength=Strength+ 10; break; } else { break; }
+                case ConsoleKey.I: if (Intelligence<=90) { Intelligence=Intelligence+ 10; break; } else { break; }
+                case ConsoleKey.D: if (Defense<=90) { Defense=Defense+ 10; break; } else { break; }
+                case ConsoleKey.A: if (Agility<=90) { Agility=Agility+ 10; break; } else { break; }
+                case ConsoleKey.C: if (Constitution<=90) { Constitution=Constitution+ 10; break; } else { break; }
+                case ConsoleKey.M: if (Charisma<=90) { Charisma=Charisma+ 10; break; } else { break; }
+                case ConsoleKey.Q: backingUp = true; break;
+            }
+
+
+        }
     }
 }
