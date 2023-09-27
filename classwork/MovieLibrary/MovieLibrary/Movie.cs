@@ -3,6 +3,11 @@
     public class Movie
     {
         //fields=data in a class
+        /// <summary>
+        /// minimum release year
+        /// </summary>
+        public const int MinimumReleaseYear = 1900;
+        public int Id { get; private set; }
 
         private string _title;
         /// <summary>title of movie.</summary>
@@ -59,7 +64,7 @@
 
         private string _rating;
         /// <summary>rating of movie.</summary>
-        public string Rating
+        public Rating Rating
         {
             get {
                 if (String.IsNullOrEmpty(_title))
@@ -78,7 +83,8 @@
         /// <summary>
         /// LENGTH of the movie
         /// </summary>
-        public int RunLength {
+        public int RunLength
+        {
             get;
             set;
         }
@@ -87,15 +93,17 @@
         /// <summary>
         /// year of movie release
         /// </summary>
-        public int ReleaseYear { get; set; }
+        public int ReleaseYear { get; set; } = MinimumReleaseYear;
         private bool _isBlackAndWhite = false;
         public bool IsBlackAndWhite { get; set; }
 
         public bool NeedsIntermission
         {
             get { return RunLength>=150; }
-            
+
         }
+
+
         ///<summary>Download meta data from the internet</summary>
         //private void DownloadMetaData ()
         // {
@@ -109,8 +117,8 @@
                 return "Title is required!";
 
 
-            if (ReleaseYear<1900)
-                return "Release Year must be greater than 1900";
+            if (ReleaseYear<MinimumReleaseYear)
+                return $"Release Year must be greater than {MinimumReleaseYear}";
             if (RunLength<0)
                 return "length must be at least 0";
 
