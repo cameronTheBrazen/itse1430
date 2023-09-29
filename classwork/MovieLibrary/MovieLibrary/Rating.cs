@@ -5,13 +5,14 @@ namespace MovieLibrary
 /// </summary>
     public class Rating
     {
-        public Rating (string name) {
-            Name=String.IsNullOrEmpty(name)? "":name;
+        public Rating ( string name )
+        {
+            Name=String.IsNullOrEmpty(name) ? "" : name;
         }
-        public static readonly Rating G=new Rating("G");
-        public static readonly Rating PG=new Rating("PG");
-        public static readonly Rating PG13=new Rating("PG13");
-        public static readonly Rating R=new Rating("R");
+        public static readonly Rating G = new Rating("G");
+        public static readonly Rating PG = new Rating("PG");
+        public static readonly Rating PG13 = new Rating("PG13");
+        public static readonly Rating R = new Rating("R");
 
 
 
@@ -19,10 +20,10 @@ namespace MovieLibrary
         /// <summary>
         /// Gets rating name
         /// </summary>
-        public string Name { get;  }
-        
-     
-       
+        public string Name { get; }
+
+
+
 
 
 

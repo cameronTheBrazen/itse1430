@@ -88,12 +88,11 @@ partial class Program
 
             movie.Genre = ReadString("Enter a genre: ", false);
             movie.Rating = ReadRating("Enter a rating: ");
-            
-
-
-
+           
             movie.IsBlackAndWhite = ReadBoolean("Black and White (Y/N)?");
-            var error = movie.Validate();
+
+            ValidatableObject validInstance = movie;
+            var error = validInstance.Validate();
             if (String.IsNullOrEmpty(error))
                 Console.WriteLine($"ERROR: {error}");
             return movie;

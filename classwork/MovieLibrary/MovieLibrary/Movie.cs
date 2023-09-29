@@ -1,7 +1,31 @@
 ﻿namespace MovieLibrary
 {/// <summary> represents a single movie</summary>
-    public class Movie
+    public class Movie : ValidatableObject
     {
+        /// <summary>
+        ///  Initializes the movie class        
+        /// </summary>
+        /// <param name="id">Identifier of the movie</param>
+        public Movie ()
+        {
+            _initialized = true;
+        }
+
+        public Movie ( int id ) : this(id, "")
+        {
+            Id= id;
+        }
+        public Movie ( string title ) : this(0, title)
+        {
+
+        }
+        public Movie ( int id, string title ) : this()
+        {
+            Id= id;
+            Title= title;
+        }
+
+
         //fields=data in a class
         /// <summary>
         /// minimum release year
@@ -9,6 +33,7 @@
         public const int MinimumReleaseYear = 1900;
         public int Id { get; private set; }
 
+        private bool _initialized;
         private string _title;
         /// <summary>title of movie.</summary>
         public string Title
@@ -62,21 +87,21 @@
             }
         }
 
-        private string _rating;
+        private Rating _rating;
         /// <summary>rating of movie.</summary>
         public Rating Rating
         {
             get {
                 if (String.IsNullOrEmpty(_title))
                 {
-                    return "";
+                    return Rating.PG;
                 }
                 return _rating;
             }
             set {
                 if (value!= null)
-                    value= value.Trim();
-                _rating = value;
+
+                    _rating = value;
             }
         }
         //private int _runLength = 0;
@@ -110,26 +135,34 @@
 
         // }
         ///<summary>Validates the movie instance</summary>
-        public string Validate ()
+        public override bool TryValidate ( out string message )
         {
 
             if (String.IsNullOrEmpty(_title))
-                return "Title is required!";
-
-
+            {
+                message = "Title is required!";
+                return false;
+            }
             if (ReleaseYear<MinimumReleaseYear)
-                return $"Release Year must be greater than {MinimumReleaseYear}";
+            {
+
+                message= $"Release Year must be greater than {MinimumReleaseYear}";
+            }
             if (RunLength<0)
-                return "length must be at least 0";
-
-
+            {
+                message= "length must be at least 0";
+                return false;
+            }
 
             if (ReleaseYear<1940&& !_isBlackAndWhite)
-                return "movies before 1940 must be black and white";
-
-            return "";
+            {
+                message= "movies before 1940 must be black and white";
+                return false;
+            }
+            message="";
+            return true;
 
         }
-
     }
+
 }
