@@ -14,7 +14,8 @@ namespace Cameron.CharacterCreator
             int menuInput;
             Character character = new Character();
             bool characterIsCreated = false;
-            while (true)
+            bool done=false;
+            while (!done)
             {
                 DisplayMainMenu(characterIsCreated);
 
@@ -65,7 +66,7 @@ namespace Cameron.CharacterCreator
                     switch (Console.ReadKey(true).Key)
                     {
 
-                        case ConsoleKey.Y: Environment.Exit(0); break;
+                        case ConsoleKey.Y: done=true; break;
 
                         case ConsoleKey.N: break;
 
