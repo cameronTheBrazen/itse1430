@@ -22,7 +22,10 @@ namespace MovieLibrary
         /// </summary>
         public string Name { get; }
 
-
+        public override string ToString ()
+        {
+            return Name;
+        }
 
 
 

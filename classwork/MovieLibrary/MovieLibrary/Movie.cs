@@ -13,7 +13,7 @@
 
         public Movie ( int id ) : this(id, "")
         {
-            Id= id;
+            //Id= id;
         }
         public Movie ( string title ) : this(0, title)
         {
@@ -21,8 +21,8 @@
         }
         public Movie ( int id, string title ) : this()
         {
-            Id= id;
-            Title= title;
+            //Id= id;
+            //Title= title;
         }
 
 
@@ -39,16 +39,14 @@
         public string Title
         {
             get {
-                if (String.IsNullOrEmpty(_title))
-                {
-                    return "";
-                }
-                return _title;
+                
+                return _title ?? "";
             }
             set {
-                if (value!= null)
-                    value= value.Trim();
-                _title = value;
+                //if (value!= null)
+                //    value= value.Trim();
+                //_title = value;
+                _title= value?.Trim()??"";
             }
         }
         private string _description;
@@ -56,11 +54,7 @@
         public string Description
         {
             get {
-                if (String.IsNullOrEmpty(_title))
-                {
-                    return "";
-                }
-                return _description;
+                return _description ?? "";
             }
             set {
                 if (value!= null)
@@ -74,11 +68,7 @@
         public string Genre
         {
             get {
-                if (String.IsNullOrEmpty(_title))
-                {
-                    return "";
-                }
-                return _genre;
+                return _genre ?? "";
             }
             set {
                 if (value!= null)
@@ -163,6 +153,11 @@
             return true;
 
         }
+        public override string ToString ()
+        {
+            return $"{Title}[{ReleaseYear}]";
+        }
+
     }
 
 }

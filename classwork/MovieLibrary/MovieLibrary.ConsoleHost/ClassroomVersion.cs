@@ -18,7 +18,7 @@ partial class Program
     }
     void Run ()
     {
-        Movie movie = new Movie();
+        Movie movie = null;
         //program entry point
         var done = false;
         do
@@ -107,7 +107,7 @@ partial class Program
 
     bool DeleteMovie ( Movie movie )
     {
-        if (String.IsNullOrEmpty(movie.Title))
+        if (movie==null)
             return false;
         if (!Confirm($"Are you sure you want to delete the movie '{movie.Title}' (Y/N)?"))
             return false;
@@ -120,13 +120,16 @@ partial class Program
     void ViewMovie ( Movie movie )
     {
 
-        if (String.IsNullOrEmpty(movie.Title))
+        if (movie==null)
         {
 
             Console.WriteLine("--------------------");
             Console.WriteLine("No movies available.");
             return;
         }
+
+      
+
         Console.WriteLine("\n--------------");
         Console.WriteLine(movie.Title);
         string message2 = $"Run Length:{movie.RunLength} mins";
@@ -223,6 +226,12 @@ partial class Program
 
             Console.WriteLine("Value is required");
         } while (true);
+    }
+
+    void Display ( object value ) {
+        if (value is string valueString) { Console.WriteLine(valueString);
+        }
+        else if ( value is int valueInt) { Console.WriteLine(valueInt); }
     }
 }
 
