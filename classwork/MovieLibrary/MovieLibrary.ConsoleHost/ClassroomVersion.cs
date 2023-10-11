@@ -129,7 +129,6 @@ partial class Program
         }
 
       
-
         Console.WriteLine("\n--------------");
         Console.WriteLine(movie.Title);
         string message2 = $"Run Length:{movie.RunLength} mins";
