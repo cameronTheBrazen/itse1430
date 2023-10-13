@@ -28,64 +28,68 @@
         /// </summary>
         private void InitializeComponent ()
         {
-            _saveButton=new Button();
-            _cancelButton=new Button();
-            _comboBoxGenre=new ComboBox();
-            _textBoxDescription=new TextBox();
-            _textBoxTitle=new TextBox();
-            checkBox1=new CheckBox();
-            _textBoxReleaseYear=new TextBox();
-            _textBoxLength=new TextBox();
-            label1=new Label();
-            label2=new Label();
-            label3=new Label();
-            label4=new Label();
-            label5=new Label();
-            label6=new Label();
-            comboBox2=new ComboBox();
-            SuspendLayout();
+            this._saveButton = new System.Windows.Forms.Button();
+            this._cancelButton = new System.Windows.Forms.Button();
+            this._textBoxDescription = new System.Windows.Forms.TextBox();
+            this._textBoxTitle = new System.Windows.Forms.TextBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this._textBoxReleaseYear = new System.Windows.Forms.TextBox();
+            this._textBoxLength = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this._ratingBox = new System.Windows.Forms.ComboBox();
+            this._genreBox = new System.Windows.Forms.TextBox();
+            this.SuspendLayout();
             // 
             // _saveButton
             // 
-            _saveButton.Location=new Point(810, 570);
-            _saveButton.Margin=new Padding(6, 6, 6, 6);
-            _saveButton.Name="_saveButton";
-            _saveButton.Size=new Size(139, 49);
-            _saveButton.TabIndex=1;
-            _saveButton.Text="Save";
-            _saveButton.UseVisualStyleBackColor=true;
-            _saveButton.Click+=OnSave;
+            this._saveButton.Location = new System.Drawing.Point(436, 267);
+            this._saveButton.Name = "_saveButton";
+            this._saveButton.Size = new System.Drawing.Size(75, 23);
+            this._saveButton.TabIndex = 1;
+            this._saveButton.Text = "Save";
+            this._saveButton.UseVisualStyleBackColor = true;
+            this._saveButton.Click += new System.EventHandler(this.OnSave);
             // 
             // _cancelButton
             // 
-            _cancelButton.Location=new Point(1086, 570);
-            _cancelButton.Margin=new Padding(6, 6, 6, 6);
-            _cancelButton.Name="_cancelButton";
-            _cancelButton.Size=new Size(139, 49);
-            _cancelButton.TabIndex=2;
-            _cancelButton.Text="Cancel";
-            _cancelButton.UseVisualStyleBackColor=true;
-            _cancelButton.Click+=OnCancel;
+            this._cancelButton.Location = new System.Drawing.Point(585, 267);
+            this._cancelButton.Name = "_cancelButton";
+            this._cancelButton.Size = new System.Drawing.Size(75, 23);
+            this._cancelButton.TabIndex = 2;
+            this._cancelButton.Text = "Cancel";
+            this._cancelButton.UseVisualStyleBackColor = true;
+            this._cancelButton.Click += new System.EventHandler(this.OnCancel);
             // 
             // _comboBoxGenre
             // 
-            _comboBoxGenre.FormattingEnabled=true;
-            _comboBoxGenre.Items.AddRange(new object[] { "Comedy", "Romance", "Romantic Comedy", "Anime", "Drama", "Action", "Thriller", "Tragedy", "Documentary" });
-            _comboBoxGenre.Location=new Point(808, 307);
-            _comboBoxGenre.Margin=new Padding(6, 6, 6, 6);
-            _comboBoxGenre.Name="_comboBoxGenre";
-            _comboBoxGenre.Size=new Size(414, 40);
-            _comboBoxGenre.TabIndex=3;
-            _comboBoxGenre.SelectedIndexChanged+=ComboBox1_SelectedIndexChanged;
+            this._comboBoxGenre.FormattingEnabled = true;
+            this._comboBoxGenre.Items.AddRange(new object[] {
+            "Comedy",
+            "Romance",
+            "Romantic Comedy",
+            "Anime",
+            "Drama",
+            "Action",
+            "Thriller",
+            "Tragedy",
+            "Documentary"});
+            this._comboBoxGenre.Location = new System.Drawing.Point(435, 144);
+            this._comboBoxGenre.Name = "_comboBoxGenre";
+            this._comboBoxGenre.Size = new System.Drawing.Size(225, 23);
+            this._comboBoxGenre.TabIndex = 3;
+            this._comboBoxGenre.SelectedIndexChanged += new System.EventHandler(this.ComboBox1_SelectedIndexChanged);
             // 
             // _textBoxDescription
             // 
-            _textBoxDescription.Location=new Point(808, 414);
-            _textBoxDescription.Margin=new Padding(6, 6, 6, 6);
-            _textBoxDescription.Multiline=true;
-            _textBoxDescription.Name="_textBoxDescription";
-            _textBoxDescription.Size=new Size(414, 144);
-            _textBoxDescription.TabIndex=5;
+            this._textBoxDescription.Location = new System.Drawing.Point(435, 194);
+            this._textBoxDescription.Name = "_textBoxDescription";
+            this._textBoxDescription.Size = new System.Drawing.Size(225, 23);
+            this._textBoxDescription.TabIndex = 5;
             // 
             // _textBoxTitle
             // 
@@ -154,23 +158,21 @@
             // 
             // label4
             // 
-            label4.AutoSize=true;
-            label4.Location=new Point(945, 269);
-            label4.Margin=new Padding(6, 0, 6, 0);
-            label4.Name="label4";
-            label4.Size=new Size(78, 32);
-            label4.TabIndex=13;
-            label4.Text="Genre";
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(509, 126);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(38, 15);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "Genre";
             // 
             // label5
             // 
-            label5.AutoSize=true;
-            label5.Location=new Point(921, 375);
-            label5.Margin=new Padding(6, 0, 6, 0);
-            label5.Name="label5";
-            label5.Size=new Size(135, 32);
-            label5.TabIndex=14;
-            label5.Text="Description";
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(496, 176);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(67, 15);
+            this.label5.TabIndex = 14;
+            this.label5.Text = "Description";
             // 
             // label6
             // 
@@ -182,47 +184,49 @@
             label6.TabIndex=15;
             label6.Text="Release year";
             // 
-            // comboBox2
+            // _ratingBox
             // 
-            comboBox2.FormattingEnabled=true;
-            comboBox2.Items.AddRange(new object[] { "G", "PG", "PG-13", "R" });
-            comboBox2.Location=new Point(800, 186);
-            comboBox2.Margin=new Padding(6, 6, 6, 6);
-            comboBox2.Name="comboBox2";
-            comboBox2.Size=new Size(104, 40);
-            comboBox2.TabIndex=16;
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "G",
+            "PG",
+            "PG-13",
+            "R"});
+            this.comboBox2.Location = new System.Drawing.Point(431, 87);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(58, 23);
+            this.comboBox2.TabIndex = 16;
             // 
             // MovieForm
             // 
-            AutoScaleDimensions=new SizeF(13F, 32F);
-            AutoScaleMode=AutoScaleMode.Font;
-            ClientSize=new Size(1486, 960);
-            Controls.Add(comboBox2);
-            Controls.Add(label6);
-            Controls.Add(label5);
-            Controls.Add(label4);
-            Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(label1);
-            Controls.Add(_textBoxLength);
-            Controls.Add(_textBoxReleaseYear);
-            Controls.Add(checkBox1);
-            Controls.Add(_textBoxTitle);
-            Controls.Add(_textBoxDescription);
-            Controls.Add(_comboBoxGenre);
-            Controls.Add(_cancelButton);
-            Controls.Add(_saveButton);
-            Margin=new Padding(6, 6, 6, 6);
-            Name="MovieForm";
-            Text="Add Movie";
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this._textBoxLength);
+            this.Controls.Add(this._textBoxReleaseYear);
+            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this._textBoxTitle);
+            this.Controls.Add(this._textBoxDescription);
+            this.Controls.Add(this._comboBoxGenre);
+            this.Controls.Add(this._cancelButton);
+            this.Controls.Add(this._saveButton);
+            this.Name = "MovieForm";
+            this.Text = "Add Movie";
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
         private Button _saveButton;
         private Button _cancelButton;
-        private ComboBox _comboBoxGenre;
         private TextBox _textBoxDescription;
         private TextBox _textBoxTitle;
         private CheckBox checkBox1;
@@ -234,6 +238,7 @@
         private Label label4;
         private Label label5;
         private Label label6;
-        private ComboBox comboBox2;
+        private ComboBox _ratingBox;
+        private TextBox _genreBox;
     }
 }
