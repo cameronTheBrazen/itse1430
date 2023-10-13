@@ -17,7 +17,7 @@ namespace MovieLibrary.WinHost
             InitializeComponent();
         }
 
-        
+
 
         private void ComboBox1_SelectedIndexChanged ( object sender, EventArgs e )
         {
