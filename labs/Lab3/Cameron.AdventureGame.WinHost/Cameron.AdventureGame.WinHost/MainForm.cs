@@ -17,9 +17,9 @@ namespace Cameron.AdventureGame.WinHost
             InitializeComponent();
         }
 
-        private List<Character> _characterList = new List<Character>();
+        //private List<Character> _characterList = new List<Character>();
        
-        public List<Character> CharacterList { get { return _characterList; } }
+        //public List<Character> CharacterList { get { return _characterList; } }
 
         private void OnFileExit ( object sender, EventArgs e )
         {
@@ -35,11 +35,16 @@ namespace Cameron.AdventureGame.WinHost
             {
                 e.Cancel = true;
             }
+            base.OnFormClosing(e);
         }
-
+        private void OnOpeningNewCharacter (object sender, EventArgs e)
+        {
+            var dlg = new CharacterForm();
+            dlg.ShowDialog();
+        }
         private void OnAdd ()
         {
-            _characterList.Add(new Character());
+            
             RefreshInterface();
         }   
 
@@ -48,9 +53,21 @@ namespace Cameron.AdventureGame.WinHost
             var about = new AboutBox1();
             about.ShowDialog();
         }
+        private Character GetCharacter (){
+            return _character;
+        }
         public void RefreshInterface ()
         {
             
+                _characterList.DataSource = null;
+
+                //HACK: Fix this
+                if (_character != null)
+                    _characterList.DataSource = new[] { _character };
+            
         }
+        private Character _character;
+        private Character _characterList;
+
     }
 }

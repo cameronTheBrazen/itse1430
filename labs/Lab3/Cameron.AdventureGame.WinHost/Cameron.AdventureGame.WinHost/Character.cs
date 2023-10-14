@@ -83,7 +83,27 @@ namespace Cameron.AdventureGame
         /// available status points to edit character
         /// </summary>
         public int FreeStatusPoints { get; set; }
-
+        public object DataSource { get; internal set; }
+        public void SetClassStats ()
+        {
+            if (SelectedClass==CharacterClass.Paladin) {
+                PaladinBase();
+            }
+            else if(SelectedClass==CharacterClass.Cleric) {
+                ClericBase();
+            } else if (SelectedClass==CharacterClass.Warrior)
+            {   WarriorBase();
+            } else if (SelectedClass==CharacterClass.Mage)
+            {MageBase();
+            } else if (SelectedClass==CharacterClass.Wizard)
+            {
+                WizardBase();
+            } else if (SelectedClass==CharacterClass.SpellSword)
+            {SpellSwordBase();
+            } else if (SelectedClass==CharacterClass.ShieldWarden)
+            {ShieldWardenBase();
+            }
+        }
         /// <summary>
         /// Sets base stats 
         /// </summary>
@@ -202,95 +222,81 @@ namespace Cameron.AdventureGame
         /// <returns></returns>
         public string CreateName ()
         {
-            bool nullName = true;
-            while (nullName==true)
-            {
-                Console.WriteLine(" Enter Your Characters Name ");
-                CharacterName= Console.ReadLine();
-                if (String.IsNullOrEmpty(CharacterName))
-                {
-
-                    nullName= true;
-                } else
-                {
-                    nullName= false;
-                }
-            }
-
+           
 
             return CharacterName;
         }
         /// <summary>
         /// method for class selection
         /// </summary>
-        public void SelectClass ()
-        {
-            bool valid = false;
-            // add character; quit; 
-            do
-            {
-                switch (Console.ReadKey(true).Key)
-                {
-                    case ConsoleKey.P: valid=true; SelectedClass= Character.CharacterClass.Paladin; PaladinBase(); break;
-                    case ConsoleKey.C: valid=true; SelectedClass= Character.CharacterClass.Cleric; ClericBase(); break;
-                    case ConsoleKey.W: valid=true; SelectedClass= Character.CharacterClass.Warrior; WarriorBase(); break;
-                    case ConsoleKey.R: valid=true; SelectedClass= Character.CharacterClass.Rogue; RogueBase(); break;
-                    case ConsoleKey.M: valid=true; SelectedClass= Character.CharacterClass.Mage; MageBase(); break;
-                    case ConsoleKey.Z:
-                    valid=true;
-                    SelectedClass= Character.CharacterClass.Wizard; WizardBase(); break;
-                    case ConsoleKey.S:
-                    valid=true;
-                    SelectedClass= Character.CharacterClass.SpellSword; SpellSwordBase(); break;
-                    case ConsoleKey.D: valid=true; SelectedClass= Character.CharacterClass.ShieldWarden; ShieldWardenBase(); break;
-                    default: valid=false; Console.WriteLine("Invalid Choice"); SelectedClass= Character.CharacterClass.InvalidChoice; break;
+        //public void SelectClass ()
+        //{
+        //    bool valid = false;
+        //    // add character; quit; 
+        //    do
+        //    {
+        //        switch (Console.ReadKey(true).Key)
+        //        {
+        //            case ConsoleKey.P: valid=true; SelectedClass= Character.CharacterClass.Paladin; PaladinBase(); break;
+        //            case ConsoleKey.C: valid=true; SelectedClass= Character.CharacterClass.Cleric; ClericBase(); break;
+        //            case ConsoleKey.W: valid=true; SelectedClass= Character.CharacterClass.Warrior; WarriorBase(); break;
+        //            case ConsoleKey.R: valid=true; SelectedClass= Character.CharacterClass.Rogue; RogueBase(); break;
+        //            case ConsoleKey.M: valid=true; SelectedClass= Character.CharacterClass.Mage; MageBase(); break;
+        //            case ConsoleKey.Z:
+        //            valid=true;
+        //            SelectedClass= Character.CharacterClass.Wizard; WizardBase(); break;
+        //            case ConsoleKey.S:
+        //            valid=true;
+        //            SelectedClass= Character.CharacterClass.SpellSword; SpellSwordBase(); break;
+        //            case ConsoleKey.D: valid=true; SelectedClass= Character.CharacterClass.ShieldWarden; ShieldWardenBase(); break;
+        //            default: valid=false; Console.WriteLine("Invalid Choice"); SelectedClass= Character.CharacterClass.InvalidChoice; break;
 
 
-                }
-            } while (valid==false);
-        }
+        //        }
+        //    } while (valid==false);
+        //}
 
         /// <summary>
         /// method for race selection
         /// </summary>
-        public void SelectRace ()
-        {
+        //public void SelectRace ()
+        //{
 
-            bool valid;
-            do
-            {
-                // add character; quit; 
-                switch (Console.ReadKey(true).Key)
-                {
-                    case ConsoleKey.D: valid=true; SelectedRace= Character.CharacterRace.Dwarf; break;
-                    case ConsoleKey.E: valid=true; SelectedRace= Character.CharacterRace.Elf; break;
-                    case ConsoleKey.G: valid=true; SelectedRace= Character.CharacterRace.Gnome; break;
-                    case ConsoleKey.H: valid=true; SelectedRace= Character.CharacterRace.Human; break;
-                    case ConsoleKey.X: valid=true; SelectedRace= Character.CharacterRace.Gnoll; break;
-                    default: valid=false; Console.WriteLine("Invalid Choice"); SelectedRace= Character.CharacterRace.InvalidChoice; break;
-                }
-            } while (valid==false);
-        }
+        //    bool valid;
+        //    do
+        //    {
+        //        // add character; quit; 
+        //        switch (Console.ReadKey(true).Key)
+        //        {
+        //            case ConsoleKey.D: valid=true; SelectedRace= Character.CharacterRace.Dwarf; break;
+        //            case ConsoleKey.E: valid=true; SelectedRace= Character.CharacterRace.Elf; break;
+        //            case ConsoleKey.G: valid=true; SelectedRace= Character.CharacterRace.Gnome; break;
+        //            case ConsoleKey.H: valid=true; SelectedRace= Character.CharacterRace.Human; break;
+        //            case ConsoleKey.X: valid=true; SelectedRace= Character.CharacterRace.Gnoll; break;
+        //            default: valid=false; Console.WriteLine("Invalid Choice"); SelectedRace= Character.CharacterRace.InvalidChoice; break;
+        //        }
+        //    } while (valid==false);
+        //}
         /// <summary>
         /// method to reduce status points on selected stat
         /// </summary>
         /// <param name="backingUp"></param>
-        public void ReduceStats ( bool backingUp )
-        {
-            switch (Console.ReadKey(true).Key)
-            {
-                case ConsoleKey.S: if (Strength>=10) { Strength=Strength- 10; break; } else { break; }
-                case ConsoleKey.I: if (Intelligence>=10) { Intelligence=Intelligence- 10; break; } else { break; }
-                case ConsoleKey.D: if (Defense>=10) { Defense=Defense- 10; break; } else { break; }
-                case ConsoleKey.A: if (Agility>=10) { Agility=Agility- 10; break; } else { break; }
-                case ConsoleKey.C: if (Constitution>=10) { Constitution=Constitution- 10; break; } else { break; }
-                case ConsoleKey.M: if (Charisma>=10) { Charisma=Charisma- 10; break; } else { break; }
-                case ConsoleKey.Q: backingUp = true; break;
-            }
+        //public void ReduceStats ( bool backingUp )
+        //{
+        //    switch (Console.ReadKey(true).Key)
+        //    {
+        //        case ConsoleKey.S: if (Strength>=10) { Strength=Strength- 10; break; } else { break; }
+        //        case ConsoleKey.I: if (Intelligence>=10) { Intelligence=Intelligence- 10; break; } else { break; }
+        //        case ConsoleKey.D: if (Defense>=10) { Defense=Defense- 10; break; } else { break; }
+        //        case ConsoleKey.A: if (Agility>=10) { Agility=Agility- 10; break; } else { break; }
+        //        case ConsoleKey.C: if (Constitution>=10) { Constitution=Constitution- 10; break; } else { break; }
+        //        case ConsoleKey.M: if (Charisma>=10) { Charisma=Charisma- 10; break; } else { break; }
+        //        case ConsoleKey.Q: backingUp = true; break;
+        //    }
 
-            CalcPoints();
+        //    CalcPoints();
 
-        }
+        //}
 
         /// <summary>
         /// free status point validation
@@ -308,21 +314,21 @@ namespace Cameron.AdventureGame
         /// method to increase status points on selected stat
         /// </summary>
         /// <param name="backingUp"></param>
-        public void IncreaseStats ( bool backingUp )
-        {
-            switch (Console.ReadKey(true).Key)
-            {
-                case ConsoleKey.S: if (Strength<=90) { Strength=Strength+ 10; break; } else { break; }
-                case ConsoleKey.I: if (Intelligence<=90) { Intelligence=Intelligence+ 10; break; } else { break; }
-                case ConsoleKey.D: if (Defense<=90) { Defense=Defense+ 10; break; } else { break; }
-                case ConsoleKey.A: if (Agility<=90) { Agility=Agility+ 10; break; } else { break; }
-                case ConsoleKey.C: if (Constitution<=90) { Constitution=Constitution+ 10; break; } else { break; }
-                case ConsoleKey.M: if (Charisma<=90) { Charisma=Charisma+ 10; break; } else { break; }
-                case ConsoleKey.Q: backingUp = true; break;
-            }
+        //public void IncreaseStats ( bool backingUp )
+        //{
+        //    switch (Console.ReadKey(true).Key)
+        //    {
+        //        case ConsoleKey.S: if (Strength<=90) { Strength=Strength+ 10; break; } else { break; }
+        //        case ConsoleKey.I: if (Intelligence<=90) { Intelligence=Intelligence+ 10; break; } else { break; }
+        //        case ConsoleKey.D: if (Defense<=90) { Defense=Defense+ 10; break; } else { break; }
+        //        case ConsoleKey.A: if (Agility<=90) { Agility=Agility+ 10; break; } else { break; }
+        //        case ConsoleKey.C: if (Constitution<=90) { Constitution=Constitution+ 10; break; } else { break; }
+        //        case ConsoleKey.M: if (Charisma<=90) { Charisma=Charisma+ 10; break; } else { break; }
+        //        case ConsoleKey.Q: backingUp = true; break;
+        //    }
 
 
-        }
+        //}
         /// <summary>
         /// method to delete character
         /// </summary>
@@ -380,7 +386,18 @@ namespace Cameron.AdventureGame
         /// </summary>
         public void RandomToon ()
         {
+            var random = new Random();
+            SelectedRace = RandomEnumValue<CharacterRace>(random);
+            SelectedClass= RandomEnumValue<CharacterClass>(random);
+            SetClassStats();
 
+        }
+
+        private static T RandomEnumValue<T> ( Random random )
+        {
+            var v = CharacterRace.GetValues(typeof(T));
+            var _R = random;
+            return (T)v.GetValue(_R.Next(v.Length));
         }
     }
 }
