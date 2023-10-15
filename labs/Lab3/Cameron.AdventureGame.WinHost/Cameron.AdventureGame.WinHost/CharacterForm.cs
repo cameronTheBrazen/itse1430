@@ -23,20 +23,20 @@ namespace Cameron.AdventureGame.WinHost
         private void OnSave (object sender, EventArgs e)
         {
             var button= sender as Button;   
-            var character=new Character();
-            character.CharacterName = _CharacterNameTxtBox.Text;
-            character.SelectedRace= (Character.CharacterRace)_ClassComboBox.SelectedIndex;
             
-            character.SelectedClass=(Character.CharacterClass)_RaceComboBox.SelectedIndex;
-            character.SetClassStats();
+            Character.CharacterName = _CharacterNameTxtBox.Text;
+            Character.SelectedRace= (Character.CharacterRace)_ClassComboBox.SelectedIndex;
+            
+            Character.SelectedClass=(Character.CharacterClass)_RaceComboBox.SelectedIndex;
+            Character.SetClassStats();
 
-            if (!character.TryValidate(out var error))
+            if (!Character.TryValidate(out var error))
             {
                 MessageBox.Show(error, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             };
 
-            Character = character;
+            
             DialogResult = DialogResult.OK;
             Close();
 
@@ -45,6 +45,33 @@ namespace Cameron.AdventureGame.WinHost
         {
             DialogResult = DialogResult.Cancel;
             Close();
+        }
+
+        private void OnRandom ( object sender, EventArgs e )
+        {
+           
+            Character.RandomToon();
+
+        }
+
+        
+        private void OnRaceChoice ( object sender, EventArgs e )
+        {
+           
+           var SelectedRace= (Character.CharacterRace)_ClassComboBox.SelectedIndex;
+            Character.SelectedRace=SelectedRace;
+        }
+
+        private void OnClassChoice ( object sender, EventArgs e )
+        {
+
+            Character.SelectedClass=(Character.CharacterClass)_RaceComboBox.SelectedIndex;
+            Character.SetClassStats();
+        }
+
+        private void CharacterForm_Load ( object sender, EventArgs e )
+        {
+            Character character= new Character();
         }
     }
 }

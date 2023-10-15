@@ -7,7 +7,18 @@ namespace Cameron.AdventureGame
 {
     public class Character : ValidatableObject
     {
-       
+       public Character ()
+        {
+            CharacterName="";
+            SelectedRace=(CharacterRace)0;
+            SelectedClass=(CharacterClass)0;
+            Strength=0;
+            Intelligence=0;
+            Defense= 0;
+            Agility=0;
+            Constitution= 0;
+            Charisma=0;
+        }
 
 
         public enum CharacterRace
@@ -335,8 +346,8 @@ namespace Cameron.AdventureGame
         public void DeleteCharacter ()
         {
             CharacterName="";
-            SelectedRace=0;
-            SelectedClass=0;
+            SelectedRace=(CharacterRace)0;
+            SelectedClass=(CharacterClass)0;
             Strength=0;
             Intelligence=0;
             Defense= 0;
@@ -387,6 +398,7 @@ namespace Cameron.AdventureGame
         public void RandomToon ()
         {
             var random = new Random();
+            
             SelectedRace = RandomEnumValue<CharacterRace>(random);
             SelectedClass= RandomEnumValue<CharacterClass>(random);
             SetClassStats();
