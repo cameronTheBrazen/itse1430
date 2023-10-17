@@ -32,32 +32,26 @@
             this._CharacterNameTxtBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this._RaceComboBox = new System.Windows.Forms.ComboBox();
+            this.characterBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label2 = new System.Windows.Forms.Label();
             this._ClassComboBox = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this._StrengthStatGrid = new System.Windows.Forms.DataGridView();
-            this.IntelligenceStatGrid = new System.Windows.Forms.DataGridView();
-            this._DefenseStatGrid = new System.Windows.Forms.DataGridView();
-            this._ConstitutionStatGrid = new System.Windows.Forms.DataGridView();
-            this._AgilityStatGrid = new System.Windows.Forms.DataGridView();
-            this._CharismaStatGrid = new System.Windows.Forms.DataGridView();
             this._RandomToonButton = new System.Windows.Forms.Button();
             this._SaveButton = new System.Windows.Forms.Button();
             this._CancelButton = new System.Windows.Forms.Button();
-            this.charismaDataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.characterBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.agilityDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.constitutionDataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.defenseDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.intelligenceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.strengthDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.characterBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this._StrengthStatGrid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.IntelligenceStatGrid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this._DefenseStatGrid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this._ConstitutionStatGrid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this._AgilityStatGrid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this._CharismaStatGrid)).BeginInit();
+            this._StrengthListBox = new System.Windows.Forms.ListBox();
+            this._AgilityListBox = new System.Windows.Forms.ListBox();
+            this._IntellectListBox = new System.Windows.Forms.ListBox();
+            this._CharismaListBox = new System.Windows.Forms.ListBox();
+            this._DefenseListBox = new System.Windows.Forms.ListBox();
+            this._ConstitutionListBox = new System.Windows.Forms.ListBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.characterBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.characterBindingSource1)).BeginInit();
             this.SuspendLayout();
@@ -81,18 +75,18 @@
             // _RaceComboBox
             // 
             this._RaceComboBox.DataBindings.Add(new System.Windows.Forms.Binding("SelectedItem", this.characterBindingSource, "SelectedRace", true));
+            this._RaceComboBox.DataSource = this.characterBindingSource;
+            this._RaceComboBox.DisplayMember = "SelectedRace";
             this._RaceComboBox.FormattingEnabled = true;
-            this._RaceComboBox.Items.AddRange(new object[] {
-            "Dwarf",
-            "Elf",
-            "Gnome",
-            "Human",
-            "Gnoll"});
             this._RaceComboBox.Location = new System.Drawing.Point(323, 39);
             this._RaceComboBox.Name = "_RaceComboBox";
             this._RaceComboBox.Size = new System.Drawing.Size(183, 33);
             this._RaceComboBox.TabIndex = 2;
             this._RaceComboBox.SelectedIndexChanged += new System.EventHandler(this.OnRaceChoice);
+            // 
+            // characterBindingSource
+            // 
+            this.characterBindingSource.DataSource = typeof(Cameron.AdventureGame.Character);
             // 
             // label2
             // 
@@ -130,138 +124,6 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "Class/Profession";
             // 
-            // _StrengthStatGrid
-            // 
-            this._StrengthStatGrid.AllowUserToAddRows = false;
-            this._StrengthStatGrid.AllowUserToDeleteRows = false;
-            this._StrengthStatGrid.AutoGenerateColumns = false;
-            this._StrengthStatGrid.ColumnHeadersHeight = 32;
-            this._StrengthStatGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this._StrengthStatGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.strengthDataGridViewTextBoxColumn});
-            this._StrengthStatGrid.DataSource = this.characterBindingSource1;
-            this._StrengthStatGrid.Location = new System.Drawing.Point(60, 99);
-            this._StrengthStatGrid.Name = "_StrengthStatGrid";
-            this._StrengthStatGrid.ReadOnly = true;
-            this._StrengthStatGrid.RowHeadersWidth = 82;
-            this._StrengthStatGrid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            this._StrengthStatGrid.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.DimGray;
-            this._StrengthStatGrid.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this._StrengthStatGrid.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.White;
-            this._StrengthStatGrid.RowTemplate.Height = 33;
-            this._StrengthStatGrid.Size = new System.Drawing.Size(284, 69);
-            this._StrengthStatGrid.TabIndex = 6;
-            // 
-            // IntelligenceStatGrid
-            // 
-            this.IntelligenceStatGrid.AllowUserToAddRows = false;
-            this.IntelligenceStatGrid.AllowUserToDeleteRows = false;
-            this.IntelligenceStatGrid.AutoGenerateColumns = false;
-            this.IntelligenceStatGrid.ColumnHeadersHeight = 32;
-            this.IntelligenceStatGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.IntelligenceStatGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.intelligenceDataGridViewTextBoxColumn});
-            this.IntelligenceStatGrid.DataSource = this.characterBindingSource;
-            this.IntelligenceStatGrid.Location = new System.Drawing.Point(60, 242);
-            this.IntelligenceStatGrid.Name = "IntelligenceStatGrid";
-            this.IntelligenceStatGrid.ReadOnly = true;
-            this.IntelligenceStatGrid.RowHeadersWidth = 82;
-            this.IntelligenceStatGrid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            this.IntelligenceStatGrid.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.DimGray;
-            this.IntelligenceStatGrid.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.IntelligenceStatGrid.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.White;
-            this.IntelligenceStatGrid.RowTemplate.Height = 33;
-            this.IntelligenceStatGrid.Size = new System.Drawing.Size(284, 65);
-            this.IntelligenceStatGrid.TabIndex = 7;
-            // 
-            // _DefenseStatGrid
-            // 
-            this._DefenseStatGrid.AllowUserToAddRows = false;
-            this._DefenseStatGrid.AllowUserToDeleteRows = false;
-            this._DefenseStatGrid.AutoGenerateColumns = false;
-            this._DefenseStatGrid.ColumnHeadersHeight = 32;
-            this._DefenseStatGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this._DefenseStatGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.defenseDataGridViewTextBoxColumn2});
-            this._DefenseStatGrid.DataSource = this.characterBindingSource;
-            this._DefenseStatGrid.Location = new System.Drawing.Point(347, 132);
-            this._DefenseStatGrid.Name = "_DefenseStatGrid";
-            this._DefenseStatGrid.ReadOnly = true;
-            this._DefenseStatGrid.RowHeadersWidth = 82;
-            this._DefenseStatGrid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            this._DefenseStatGrid.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.DimGray;
-            this._DefenseStatGrid.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this._DefenseStatGrid.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.White;
-            this._DefenseStatGrid.RowTemplate.Height = 33;
-            this._DefenseStatGrid.Size = new System.Drawing.Size(282, 108);
-            this._DefenseStatGrid.TabIndex = 8;
-            // 
-            // _ConstitutionStatGrid
-            // 
-            this._ConstitutionStatGrid.AllowUserToAddRows = false;
-            this._ConstitutionStatGrid.AllowUserToDeleteRows = false;
-            this._ConstitutionStatGrid.AutoGenerateColumns = false;
-            this._ConstitutionStatGrid.ColumnHeadersHeight = 32;
-            this._ConstitutionStatGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this._ConstitutionStatGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.constitutionDataGridViewTextBoxColumn3});
-            this._ConstitutionStatGrid.DataSource = this.characterBindingSource;
-            this._ConstitutionStatGrid.Location = new System.Drawing.Point(347, 272);
-            this._ConstitutionStatGrid.Name = "_ConstitutionStatGrid";
-            this._ConstitutionStatGrid.ReadOnly = true;
-            this._ConstitutionStatGrid.RowHeadersWidth = 82;
-            this._ConstitutionStatGrid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            this._ConstitutionStatGrid.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.DimGray;
-            this._ConstitutionStatGrid.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this._ConstitutionStatGrid.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.White;
-            this._ConstitutionStatGrid.RowTemplate.Height = 33;
-            this._ConstitutionStatGrid.Size = new System.Drawing.Size(282, 65);
-            this._ConstitutionStatGrid.TabIndex = 9;
-            // 
-            // _AgilityStatGrid
-            // 
-            this._AgilityStatGrid.AllowUserToAddRows = false;
-            this._AgilityStatGrid.AllowUserToDeleteRows = false;
-            this._AgilityStatGrid.AutoGenerateColumns = false;
-            this._AgilityStatGrid.ColumnHeadersHeight = 32;
-            this._AgilityStatGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this._AgilityStatGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.agilityDataGridViewTextBoxColumn1});
-            this._AgilityStatGrid.DataSource = this.characterBindingSource;
-            this._AgilityStatGrid.Location = new System.Drawing.Point(60, 174);
-            this._AgilityStatGrid.Name = "_AgilityStatGrid";
-            this._AgilityStatGrid.ReadOnly = true;
-            this._AgilityStatGrid.RowHeadersWidth = 82;
-            this._AgilityStatGrid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            this._AgilityStatGrid.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.DimGray;
-            this._AgilityStatGrid.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this._AgilityStatGrid.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.White;
-            this._AgilityStatGrid.RowTemplate.Height = 33;
-            this._AgilityStatGrid.Size = new System.Drawing.Size(284, 66);
-            this._AgilityStatGrid.TabIndex = 10;
-            // 
-            // _CharismaStatGrid
-            // 
-            this._CharismaStatGrid.AllowUserToAddRows = false;
-            this._CharismaStatGrid.AllowUserToDeleteRows = false;
-            this._CharismaStatGrid.AutoGenerateColumns = false;
-            this._CharismaStatGrid.ColumnHeadersHeight = 32;
-            this._CharismaStatGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this._CharismaStatGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.charismaDataGridViewTextBoxColumn4});
-            this._CharismaStatGrid.DataSource = this.characterBindingSource;
-            this._CharismaStatGrid.Location = new System.Drawing.Point(62, 307);
-            this._CharismaStatGrid.Name = "_CharismaStatGrid";
-            this._CharismaStatGrid.ReadOnly = true;
-            this._CharismaStatGrid.RowHeadersWidth = 82;
-            this._CharismaStatGrid.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            this._CharismaStatGrid.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.DimGray;
-            this._CharismaStatGrid.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this._CharismaStatGrid.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.White;
-            this._CharismaStatGrid.RowTemplate.Height = 33;
-            this._CharismaStatGrid.Size = new System.Drawing.Size(282, 66);
-            this._CharismaStatGrid.TabIndex = 11;
-            // 
             // _RandomToonButton
             // 
             this._RandomToonButton.Location = new System.Drawing.Point(60, 384);
@@ -292,84 +154,151 @@
             this._CancelButton.UseVisualStyleBackColor = true;
             this._CancelButton.Click += new System.EventHandler(this.OnCancel);
             // 
-            // charismaDataGridViewTextBoxColumn4
-            // 
-            this.charismaDataGridViewTextBoxColumn4.DataPropertyName = "Charisma";
-            this.charismaDataGridViewTextBoxColumn4.HeaderText = "Charisma";
-            this.charismaDataGridViewTextBoxColumn4.MinimumWidth = 10;
-            this.charismaDataGridViewTextBoxColumn4.Name = "charismaDataGridViewTextBoxColumn4";
-            this.charismaDataGridViewTextBoxColumn4.ReadOnly = true;
-            this.charismaDataGridViewTextBoxColumn4.Width = 200;
-            // 
-            // characterBindingSource
-            // 
-            this.characterBindingSource.DataSource = typeof(Cameron.AdventureGame.Character);
-            // 
-            // agilityDataGridViewTextBoxColumn1
-            // 
-            this.agilityDataGridViewTextBoxColumn1.DataPropertyName = "Agility";
-            this.agilityDataGridViewTextBoxColumn1.HeaderText = "Agility";
-            this.agilityDataGridViewTextBoxColumn1.MinimumWidth = 10;
-            this.agilityDataGridViewTextBoxColumn1.Name = "agilityDataGridViewTextBoxColumn1";
-            this.agilityDataGridViewTextBoxColumn1.ReadOnly = true;
-            this.agilityDataGridViewTextBoxColumn1.Width = 200;
-            // 
-            // constitutionDataGridViewTextBoxColumn3
-            // 
-            this.constitutionDataGridViewTextBoxColumn3.DataPropertyName = "Constitution";
-            this.constitutionDataGridViewTextBoxColumn3.HeaderText = "Constitution";
-            this.constitutionDataGridViewTextBoxColumn3.MinimumWidth = 10;
-            this.constitutionDataGridViewTextBoxColumn3.Name = "constitutionDataGridViewTextBoxColumn3";
-            this.constitutionDataGridViewTextBoxColumn3.ReadOnly = true;
-            this.constitutionDataGridViewTextBoxColumn3.Width = 200;
-            // 
-            // defenseDataGridViewTextBoxColumn2
-            // 
-            this.defenseDataGridViewTextBoxColumn2.DataPropertyName = "Defense";
-            this.defenseDataGridViewTextBoxColumn2.FillWeight = 15F;
-            this.defenseDataGridViewTextBoxColumn2.HeaderText = "Defense";
-            this.defenseDataGridViewTextBoxColumn2.MinimumWidth = 10;
-            this.defenseDataGridViewTextBoxColumn2.Name = "defenseDataGridViewTextBoxColumn2";
-            this.defenseDataGridViewTextBoxColumn2.ReadOnly = true;
-            this.defenseDataGridViewTextBoxColumn2.Width = 200;
-            // 
-            // intelligenceDataGridViewTextBoxColumn
-            // 
-            this.intelligenceDataGridViewTextBoxColumn.DataPropertyName = "Intelligence";
-            this.intelligenceDataGridViewTextBoxColumn.HeaderText = "Intelligence";
-            this.intelligenceDataGridViewTextBoxColumn.MinimumWidth = 10;
-            this.intelligenceDataGridViewTextBoxColumn.Name = "intelligenceDataGridViewTextBoxColumn";
-            this.intelligenceDataGridViewTextBoxColumn.ReadOnly = true;
-            this.intelligenceDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // strengthDataGridViewTextBoxColumn
-            // 
-            this.strengthDataGridViewTextBoxColumn.DataPropertyName = "Strength";
-            this.strengthDataGridViewTextBoxColumn.FillWeight = 10F;
-            this.strengthDataGridViewTextBoxColumn.HeaderText = "Strength";
-            this.strengthDataGridViewTextBoxColumn.MinimumWidth = 10;
-            this.strengthDataGridViewTextBoxColumn.Name = "strengthDataGridViewTextBoxColumn";
-            this.strengthDataGridViewTextBoxColumn.ReadOnly = true;
-            this.strengthDataGridViewTextBoxColumn.Width = 200;
-            // 
             // characterBindingSource1
             // 
             this.characterBindingSource1.DataSource = typeof(Cameron.AdventureGame.Character);
+            // 
+            // _StrengthListBox
+            // 
+            this._StrengthListBox.DataSource = this.characterBindingSource;
+            this._StrengthListBox.DisplayMember = "Strength";
+            this._StrengthListBox.FormattingEnabled = true;
+            this._StrengthListBox.ItemHeight = 25;
+            this._StrengthListBox.Location = new System.Drawing.Point(13, 106);
+            this._StrengthListBox.Name = "_StrengthListBox";
+            this._StrengthListBox.Size = new System.Drawing.Size(94, 29);
+            this._StrengthListBox.TabIndex = 15;
+            // 
+            // _AgilityListBox
+            // 
+            this._AgilityListBox.DataSource = this.characterBindingSource;
+            this._AgilityListBox.DisplayMember = "Agility";
+            this._AgilityListBox.FormattingEnabled = true;
+            this._AgilityListBox.ItemHeight = 25;
+            this._AgilityListBox.Location = new System.Drawing.Point(12, 165);
+            this._AgilityListBox.Name = "_AgilityListBox";
+            this._AgilityListBox.Size = new System.Drawing.Size(94, 29);
+            this._AgilityListBox.TabIndex = 16;
+            // 
+            // _IntellectListBox
+            // 
+            this._IntellectListBox.DataSource = this.characterBindingSource;
+            this._IntellectListBox.DisplayMember = "Intelligence";
+            this._IntellectListBox.FormattingEnabled = true;
+            this._IntellectListBox.ItemHeight = 25;
+            this._IntellectListBox.Location = new System.Drawing.Point(13, 226);
+            this._IntellectListBox.Name = "_IntellectListBox";
+            this._IntellectListBox.Size = new System.Drawing.Size(94, 29);
+            this._IntellectListBox.TabIndex = 17;
+            // 
+            // _CharismaListBox
+            // 
+            this._CharismaListBox.DataSource = this.characterBindingSource;
+            this._CharismaListBox.DisplayMember = "Charisma";
+            this._CharismaListBox.FormattingEnabled = true;
+            this._CharismaListBox.ItemHeight = 25;
+            this._CharismaListBox.Location = new System.Drawing.Point(13, 295);
+            this._CharismaListBox.Name = "_CharismaListBox";
+            this._CharismaListBox.Size = new System.Drawing.Size(94, 29);
+            this._CharismaListBox.TabIndex = 18;
+            // 
+            // _DefenseListBox
+            // 
+            this._DefenseListBox.DataSource = this.characterBindingSource;
+            this._DefenseListBox.DisplayMember = "Defense";
+            this._DefenseListBox.FormattingEnabled = true;
+            this._DefenseListBox.ItemHeight = 25;
+            this._DefenseListBox.Location = new System.Drawing.Point(272, 154);
+            this._DefenseListBox.Name = "_DefenseListBox";
+            this._DefenseListBox.Size = new System.Drawing.Size(94, 29);
+            this._DefenseListBox.TabIndex = 19;
+            // 
+            // _ConstitutionListBox
+            // 
+            this._ConstitutionListBox.DataSource = this.characterBindingSource;
+            this._ConstitutionListBox.DisplayMember = "Constitution";
+            this._ConstitutionListBox.FormattingEnabled = true;
+            this._ConstitutionListBox.ItemHeight = 25;
+            this._ConstitutionListBox.Location = new System.Drawing.Point(272, 244);
+            this._ConstitutionListBox.Name = "_ConstitutionListBox";
+            this._ConstitutionListBox.Size = new System.Drawing.Size(94, 29);
+            this._ConstitutionListBox.TabIndex = 20;
+            
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(114, 110);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(93, 25);
+            this.label4.TabIndex = 21;
+            this.label4.Text = "Strength";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(114, 169);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(70, 25);
+            this.label5.TabIndex = 22;
+            this.label5.Text = "Agility";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(114, 226);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(86, 25);
+            this.label6.TabIndex = 23;
+            this.label6.Text = "Intellect";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(119, 295);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(103, 25);
+            this.label7.TabIndex = 24;
+            this.label7.Text = "Charisma";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(274, 126);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(92, 25);
+            this.label8.TabIndex = 25;
+            this.label8.Text = "Defense";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(254, 216);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(126, 25);
+            this.label9.TabIndex = 26;
+            this.label9.Text = "Constitution";
             // 
             // CharacterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(789, 476);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this._ConstitutionListBox);
+            this.Controls.Add(this._DefenseListBox);
+            this.Controls.Add(this._CharismaListBox);
+            this.Controls.Add(this._IntellectListBox);
+            this.Controls.Add(this._AgilityListBox);
+            this.Controls.Add(this._StrengthListBox);
             this.Controls.Add(this._CancelButton);
             this.Controls.Add(this._SaveButton);
             this.Controls.Add(this._RandomToonButton);
-            this.Controls.Add(this._CharismaStatGrid);
-            this.Controls.Add(this._AgilityStatGrid);
-            this.Controls.Add(this._ConstitutionStatGrid);
-            this.Controls.Add(this._DefenseStatGrid);
-            this.Controls.Add(this.IntelligenceStatGrid);
-            this.Controls.Add(this._StrengthStatGrid);
             this.Controls.Add(this.label3);
             this.Controls.Add(this._ClassComboBox);
             this.Controls.Add(this.label2);
@@ -384,12 +313,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Create New Character";
             this.Load += new System.EventHandler(this.CharacterForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this._StrengthStatGrid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.IntelligenceStatGrid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this._DefenseStatGrid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this._ConstitutionStatGrid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this._AgilityStatGrid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this._CharismaStatGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.characterBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.characterBindingSource1)).EndInit();
             this.ResumeLayout(false);
@@ -405,22 +328,22 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox _ClassComboBox;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DataGridView _StrengthStatGrid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn strengthDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource characterBindingSource;
-        private System.Windows.Forms.DataGridView IntelligenceStatGrid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn intelligenceDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridView _DefenseStatGrid;
-        private System.Windows.Forms.DataGridView _ConstitutionStatGrid;
-        private System.Windows.Forms.DataGridView _AgilityStatGrid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn agilityDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridView _CharismaStatGrid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn constitutionDataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn charismaDataGridViewTextBoxColumn4;
         private System.Windows.Forms.BindingSource characterBindingSource1;
         private System.Windows.Forms.Button _RandomToonButton;
         private System.Windows.Forms.Button _SaveButton;
         private System.Windows.Forms.Button _CancelButton;
-        private System.Windows.Forms.DataGridViewTextBoxColumn defenseDataGridViewTextBoxColumn2;
+        private System.Windows.Forms.ListBox _StrengthListBox;
+        private System.Windows.Forms.ListBox _AgilityListBox;
+        private System.Windows.Forms.ListBox _IntellectListBox;
+        private System.Windows.Forms.ListBox _CharismaListBox;
+        private System.Windows.Forms.ListBox _DefenseListBox;
+        private System.Windows.Forms.ListBox _ConstitutionListBox;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
     }
 }

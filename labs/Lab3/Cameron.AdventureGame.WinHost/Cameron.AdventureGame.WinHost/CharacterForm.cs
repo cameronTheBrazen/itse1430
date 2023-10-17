@@ -16,6 +16,7 @@ namespace Cameron.AdventureGame.WinHost
         public CharacterForm ()
         {
             InitializeComponent();
+            Character= new Character();
         }
 
         public Character Character { get; private set; }
@@ -57,8 +58,8 @@ namespace Cameron.AdventureGame.WinHost
         
         private void OnRaceChoice ( object sender, EventArgs e )
         {
-           
-           var SelectedRace= (Character.CharacterRace)_ClassComboBox.SelectedIndex;
+            
+            var SelectedRace= (Character.CharacterRace)_ClassComboBox.SelectedIndex;
             Character.SelectedRace=SelectedRace;
         }
 
@@ -71,7 +72,12 @@ namespace Cameron.AdventureGame.WinHost
 
         private void CharacterForm_Load ( object sender, EventArgs e )
         {
+           
             Character character= new Character();
+            
         }
+
+        
     }
+
 }
