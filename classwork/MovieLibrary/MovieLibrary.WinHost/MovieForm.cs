@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace MovieLibrary.WinHost
+﻿namespace MovieLibrary.WinHost
 {
     public partial class MovieForm : Form
     {
@@ -20,9 +10,11 @@ namespace MovieLibrary.WinHost
         public Movie Movie { get; set; }
 
 
-        protected override void OnLoad ( EventArgs e ) { 
-            base.OnLoad ( e );
-            if (Movie != null) {
+        protected override void OnLoad ( EventArgs e )
+        {
+            base.OnLoad(e);
+            if (Movie != null)
+            {
                 _textBoxTitle.Text=Movie.Title;
                 _textBoxDescription.Text=Movie.Description;
                 _genreBox.Text= Movie.Genre;
@@ -36,7 +28,8 @@ namespace MovieLibrary.WinHost
         private void OnSave ( object sender, EventArgs e )
         {
 
-            if (!ValidateChildren()) {
+            if (!ValidateChildren())
+            {
                 DialogResult = DialogResult.None;
                 return;
             }
@@ -53,13 +46,13 @@ namespace MovieLibrary.WinHost
 
             if (!movie.TryValidate(out var error))
             {
-              MessageBox.Show(error, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(error, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             Movie=movie;
             DialogResult = DialogResult.OK;
-            Close();  
-            
+            Close();
+
 
         }
         private void OnCancel ( object sender, EventArgs e )
@@ -68,8 +61,9 @@ namespace MovieLibrary.WinHost
             Close();
 
         }
-        private int GetInt32 ( Control control, int defaultValue ) { 
-            if (Int32.TryParse( control.Text, out var value ) ) 
+        private int GetInt32 ( Control control, int defaultValue )
+        {
+            if (Int32.TryParse(control.Text, out var value))
                 return value;
             return defaultValue;
         }

@@ -31,7 +31,7 @@
         /// minimum release year
         /// </summary>
         public const int MinimumReleaseYear = 1900;
-        public int Id { get; private set; }
+        public int Id { get;  set; }
 
         private bool _initialized;
         private string _title;
@@ -39,7 +39,7 @@
         public string Title
         {
             get {
-                
+
                 return _title ?? "";
             }
             set {
