@@ -66,7 +66,52 @@ namespace MovieLibrary.WinHost
                 return value;
             return defaultValue;
         }
+        private void OnValidateTitle ( object sender, System.ComponentModel.CancelEventArgs e )
+        {
+            if (String.IsNullOrEmpty(_textBoxTitle.Text))
+            {
+                //Invalid
+                _errors.SetError(_textBoxTitle, "Title is required");
+                e.Cancel = true;
+            } else
+                _errors.SetError(_textBoxTitle, "");
+        }
 
-        
+        private void OnValidateReleaseYear ( object sender, System.ComponentModel.CancelEventArgs e )
+        {
+            var value = GetInt32(_textBoxReleaseYear, 1);
+            if (value < 1900)
+            {
+                //Invalid
+                _errors.SetError(_textBoxReleaseYear, "Release Year must be at least 1900");
+                e.Cancel = true;
+            } else
+                _errors.SetError(_textBoxReleaseYear, "");
+        }
+
+        private void OnValidateRunLength ( object sender, System.ComponentModel.CancelEventArgs e )
+        {
+            var value = GetInt32(_textBoxLength, -1);
+            if (value < 0)
+            {
+                //Invalid
+                _errors.SetError(_textBoxLength, "Run Length must be >= 0");
+                e.Cancel = true;
+            } else
+                _errors.SetError(_textBoxLength, "");
+        }
+
+        private void OnValidateRating ( object sender, System.ComponentModel.CancelEventArgs e )
+        {
+            if (String.IsNullOrEmpty(_ratingBox.Text))
+            {
+                //Invalid
+                _errors.SetError(_ratingBox, "Rating is required");
+                e.Cancel = true;
+            } else
+                _errors.SetError(_ratingBox, "");
+        }
     }
+
+}
 }
