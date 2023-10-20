@@ -31,9 +31,16 @@ namespace MovieLibrary.WinHost
                 _textBoxLength.Text= Movie.RunLength.ToString();
                 checkBox1.Checked=           Movie.IsBlackAndWhite;
             }
+            ValidateChildren();
         }
         private void OnSave ( object sender, EventArgs e )
         {
+
+            if (!ValidateChildren()) {
+                DialogResult = DialogResult.None;
+                return;
+            }
+            var button = sender as Button;
             var movie = new Movie();
             movie.Title = _textBoxTitle.Text;
             movie.Description = _textBoxDescription.Text;
@@ -114,4 +121,4 @@ namespace MovieLibrary.WinHost
     }
 
 }
-}
+

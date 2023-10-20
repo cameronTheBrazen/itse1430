@@ -60,6 +60,7 @@
             // 
             // _cancelButton
             // 
+            this._cancelButton.CausesValidation = false;
             this._cancelButton.Location = new System.Drawing.Point(253, 456);
             this._cancelButton.Name = "_cancelButton";
             this._cancelButton.Size = new System.Drawing.Size(75, 23);
@@ -83,6 +84,7 @@
             this._textBoxTitle.Name = "_textBoxTitle";
             this._textBoxTitle.Size = new System.Drawing.Size(414, 23);
             this._textBoxTitle.TabIndex = 6;
+            this._textBoxTitle.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateTitle);
             // 
             // checkBox1
             // 
@@ -111,6 +113,7 @@
             this._textBoxLength.Name = "_textBoxLength";
             this._textBoxLength.Size = new System.Drawing.Size(123, 23);
             this._textBoxLength.TabIndex = 9;
+            this._textBoxLength.Text = "0";
             this._textBoxLength.Validating += new System.ComponentModel.CancelEventHandler(this.OnValidateRunLength);
             // 
             // label1
