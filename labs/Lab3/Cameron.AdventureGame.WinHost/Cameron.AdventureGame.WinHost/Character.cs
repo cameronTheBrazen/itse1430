@@ -28,7 +28,7 @@ namespace Cameron.AdventureGame
             Gnome = 3,
             Human = 4,
             Gnoll = 5,
-            InvalidChoice = 0
+            SelectNew=0
         };
         public enum CharacterClass
         {
@@ -40,7 +40,7 @@ namespace Cameron.AdventureGame
             Wizard = 6,
             SpellSword = 7,
             ShieldWarden = 8,
-            InvalidChoice = 0
+           SelectNew=0
         };
         private string _characterName = "";
         /// <summary>
@@ -346,8 +346,8 @@ namespace Cameron.AdventureGame
         public void DeleteCharacter ()
         {
             CharacterName="";
-            SelectedRace=(CharacterRace)0;
-            SelectedClass=(CharacterClass)0;
+            SelectedRace=(CharacterRace)1;
+            SelectedClass=(CharacterClass)1;
             Strength=0;
             Intelligence=0;
             Defense= 0;

@@ -115,6 +115,7 @@ namespace Cameron.AdventureGame.WinHost
             this._CharacterList.Name = "_CharacterList";
             this._CharacterList.Size = new System.Drawing.Size(774, 489);
             this._CharacterList.TabIndex = 1;
+            this._CharacterList.SelectedIndexChanged += new System.EventHandler(this._CharacterList_SelectedIndexChanged);
             // 
             // MainForm
             // 

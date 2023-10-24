@@ -61,6 +61,7 @@ namespace Cameron.AdventureGame.WinHost
             
             var SelectedRace= (Character.CharacterRace)_ClassComboBox.SelectedIndex;
             Character.SelectedRace=SelectedRace;
+           
         }
 
         private void OnClassChoice ( object sender, EventArgs e )
@@ -68,16 +69,45 @@ namespace Cameron.AdventureGame.WinHost
 
             Character.SelectedClass=(Character.CharacterClass)_RaceComboBox.SelectedIndex;
             Character.SetClassStats();
+            DisplayStats();
+           
+        }
+        private void DisplayStats ()
+        {
+            if (Character != null)
+            {
+                _StrengthListBox.Text= Character.Strength.ToString();
+                _AgilityListBox.Text= Character.Agility.ToString(); 
+                _IntellectListBox.Text=Character.Intelligence.ToString();
+                _CharismaListBox.Text= Character.Charisma.ToString();
+                _DefenseListBox.Text= Character.Defense.ToString();
+                _ConstitutionListBox.Text= Character.Constitution.ToString();
+            }
         }
 
         private void CharacterForm_Load ( object sender, EventArgs e )
         {
            
             Character character= new Character();
-            
+          _RaceComboBox.DataSource=Enum.GetValues(typeof(Character.CharacterRace));
+            _ClassComboBox.DataSource=Enum.GetValues(typeof(Character.CharacterClass));
         }
 
-        
+        private void _StrengthListBox_SelectedIndexChanged ( object sender, EventArgs e )
+        {
+            AffixDataSource();
+        }
+        private void AffixDataSource () {
+            _StrengthListBox.DataSource= Character.Strength;
+            _IntellectListBox.DataSource=Character.Intelligence;
+            _AgilityListBox.DataSource= Character.Agility;
+            _CharismaListBox.DataSource= Character.Charisma;
+            _DefenseListBox.DataSource= Character.Defense;
+            _ConstitutionListBox.DataSource= Character.Constitution;
+            DisplayStats();
+        }
+    
+    
     }
-
+   
 }

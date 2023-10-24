@@ -32,14 +32,12 @@
             this._CharacterNameTxtBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this._RaceComboBox = new System.Windows.Forms.ComboBox();
-            this.characterBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label2 = new System.Windows.Forms.Label();
             this._ClassComboBox = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this._RandomToonButton = new System.Windows.Forms.Button();
             this._SaveButton = new System.Windows.Forms.Button();
             this._CancelButton = new System.Windows.Forms.Button();
-            this.characterBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this._StrengthListBox = new System.Windows.Forms.ListBox();
             this._AgilityListBox = new System.Windows.Forms.ListBox();
             this._IntellectListBox = new System.Windows.Forms.ListBox();
@@ -52,8 +50,8 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.characterBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.characterBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.characterBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // _CharacterNameTxtBox
@@ -74,19 +72,12 @@
             // 
             // _RaceComboBox
             // 
-            this._RaceComboBox.DataBindings.Add(new System.Windows.Forms.Binding("SelectedItem", this.characterBindingSource, "SelectedRace", true));
-            this._RaceComboBox.DataSource = this.characterBindingSource;
-            this._RaceComboBox.DisplayMember = "SelectedRace";
             this._RaceComboBox.FormattingEnabled = true;
-            this._RaceComboBox.Location = new System.Drawing.Point(323, 39);
+            this._RaceComboBox.Location = new System.Drawing.Point(307, 38);
             this._RaceComboBox.Name = "_RaceComboBox";
             this._RaceComboBox.Size = new System.Drawing.Size(183, 33);
             this._RaceComboBox.TabIndex = 2;
             this._RaceComboBox.SelectedIndexChanged += new System.EventHandler(this.OnRaceChoice);
-            // 
-            // characterBindingSource
-            // 
-            this.characterBindingSource.DataSource = typeof(Cameron.AdventureGame.Character);
             // 
             // label2
             // 
@@ -154,25 +145,18 @@
             this._CancelButton.UseVisualStyleBackColor = true;
             this._CancelButton.Click += new System.EventHandler(this.OnCancel);
             // 
-            // characterBindingSource1
-            // 
-            this.characterBindingSource1.DataSource = typeof(Cameron.AdventureGame.Character);
-            // 
             // _StrengthListBox
             // 
-            this._StrengthListBox.DataSource = this.characterBindingSource;
-            this._StrengthListBox.DisplayMember = "Strength";
             this._StrengthListBox.FormattingEnabled = true;
             this._StrengthListBox.ItemHeight = 25;
             this._StrengthListBox.Location = new System.Drawing.Point(13, 106);
             this._StrengthListBox.Name = "_StrengthListBox";
             this._StrengthListBox.Size = new System.Drawing.Size(94, 29);
             this._StrengthListBox.TabIndex = 15;
+            this._StrengthListBox.SelectedIndexChanged += new System.EventHandler(this._StrengthListBox_SelectedIndexChanged);
             // 
             // _AgilityListBox
             // 
-            this._AgilityListBox.DataSource = this.characterBindingSource;
-            this._AgilityListBox.DisplayMember = "Agility";
             this._AgilityListBox.FormattingEnabled = true;
             this._AgilityListBox.ItemHeight = 25;
             this._AgilityListBox.Location = new System.Drawing.Point(12, 165);
@@ -182,19 +166,15 @@
             // 
             // _IntellectListBox
             // 
-            this._IntellectListBox.DataSource = this.characterBindingSource;
-            this._IntellectListBox.DisplayMember = "Intelligence";
             this._IntellectListBox.FormattingEnabled = true;
             this._IntellectListBox.ItemHeight = 25;
-            this._IntellectListBox.Location = new System.Drawing.Point(13, 226);
+            this._IntellectListBox.Location = new System.Drawing.Point(13, 230);
             this._IntellectListBox.Name = "_IntellectListBox";
             this._IntellectListBox.Size = new System.Drawing.Size(94, 29);
             this._IntellectListBox.TabIndex = 17;
             // 
             // _CharismaListBox
             // 
-            this._CharismaListBox.DataSource = this.characterBindingSource;
-            this._CharismaListBox.DisplayMember = "Charisma";
             this._CharismaListBox.FormattingEnabled = true;
             this._CharismaListBox.ItemHeight = 25;
             this._CharismaListBox.Location = new System.Drawing.Point(13, 295);
@@ -204,8 +184,6 @@
             // 
             // _DefenseListBox
             // 
-            this._DefenseListBox.DataSource = this.characterBindingSource;
-            this._DefenseListBox.DisplayMember = "Defense";
             this._DefenseListBox.FormattingEnabled = true;
             this._DefenseListBox.ItemHeight = 25;
             this._DefenseListBox.Location = new System.Drawing.Point(272, 154);
@@ -215,15 +193,12 @@
             // 
             // _ConstitutionListBox
             // 
-            this._ConstitutionListBox.DataSource = this.characterBindingSource;
-            this._ConstitutionListBox.DisplayMember = "Constitution";
             this._ConstitutionListBox.FormattingEnabled = true;
             this._ConstitutionListBox.ItemHeight = 25;
             this._ConstitutionListBox.Location = new System.Drawing.Point(272, 244);
             this._ConstitutionListBox.Name = "_ConstitutionListBox";
             this._ConstitutionListBox.Size = new System.Drawing.Size(94, 29);
             this._ConstitutionListBox.TabIndex = 20;
-            
             // 
             // label4
             // 
@@ -246,7 +221,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(114, 226);
+            this.label6.Location = new System.Drawing.Point(114, 230);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(86, 25);
             this.label6.TabIndex = 23;
@@ -278,6 +253,10 @@
             this.label9.Size = new System.Drawing.Size(126, 25);
             this.label9.TabIndex = 26;
             this.label9.Text = "Constitution";
+            // 
+            // characterBindingSource
+            // 
+            this.characterBindingSource.DataSource = typeof(Cameron.AdventureGame.Character);
             // 
             // CharacterForm
             // 
@@ -314,7 +293,6 @@
             this.Text = "Create New Character";
             this.Load += new System.EventHandler(this.CharacterForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.characterBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.characterBindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -328,8 +306,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox _ClassComboBox;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.BindingSource characterBindingSource;
-        private System.Windows.Forms.BindingSource characterBindingSource1;
         private System.Windows.Forms.Button _RandomToonButton;
         private System.Windows.Forms.Button _SaveButton;
         private System.Windows.Forms.Button _CancelButton;
@@ -345,5 +321,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.BindingSource characterBindingSource;
     }
 }

@@ -17,13 +17,14 @@ namespace Cameron.AdventureGame.WinHost
             InitializeComponent();
         }
 
-        private List<Character> _characterList = new List<Character>();
+        private List<Character> _characterList;
 
         public List<Character> CharacterList
         {
             get { 
                 return _characterList;
             }
+            private set {; }
         }
 
         private void OnFileExit ( object sender, EventArgs e )
@@ -50,7 +51,7 @@ namespace Cameron.AdventureGame.WinHost
         private void OnAdd ()
         {
             
-            RefreshInterface(Get_characterList());
+            RefreshInterface();
         }   
 
         private void OnAbout ( object sender, EventArgs e )
@@ -62,19 +63,18 @@ namespace Cameron.AdventureGame.WinHost
             return _character;
         }
 
-        public List Get_characterList ()
+        public List<Character> Get_characterList ()
         {
+            RefreshInterface ();
             return _characterList;
         }
 
-        public void RefreshInterface ( Character _characterList )
+        public void RefreshInterface ( )
         {
-            _characterList=_character;
+            _CharacterList.DataSource = null;
+            _CharacterList.DataSource = CharacterList;
 
-                //HACK: Fix this
-                if (_character != null)
-                _characterList.DataSource = new[] { _character };
-            
+
         }
         private Character _character= new Character();
         
@@ -83,12 +83,15 @@ namespace Cameron.AdventureGame.WinHost
         {
             if ( _character != null )
             {
-                RefreshInterface(Get_characterList());
+                RefreshInterface();
             }
+        }
+
+        private void _CharacterList_SelectedIndexChanged ( object sender, EventArgs e )
+        {
+            RefreshInterface ( );
         }
     }
 
-    public class List
-    {
-    }
+  
 }
