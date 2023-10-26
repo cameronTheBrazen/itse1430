@@ -13,14 +13,18 @@ namespace Cameron.AdventureGame.WinHost
 {
     public partial class CharacterForm : Form
     {
-        public CharacterForm ()
+        public CharacterForm ( List<Character> CharacterList)
         {
             InitializeComponent();
             Character= new Character();
+            _characterList = CharacterList;
+            
         }
-
+        private int _freePoints;
+        private List<Character> _characterList;
+        public int FreePoints { get; set; }
         public Character Character { get; private set; }
-
+       
         private void OnSave (object sender, EventArgs e)
         {
             var button= sender as Button;   
@@ -37,7 +41,7 @@ namespace Cameron.AdventureGame.WinHost
                 return;
             };
 
-            
+            _characterList.Add(Character);
             DialogResult = DialogResult.OK;
             Close();
 
@@ -58,15 +62,14 @@ namespace Cameron.AdventureGame.WinHost
         
         private void OnRaceChoice ( object sender, EventArgs e )
         {
-            
-            var SelectedRace= (Character.CharacterRace)_ClassComboBox.SelectedIndex;
-            Character.SelectedRace=SelectedRace;
+               Character.SelectedRace= (Character.CharacterRace)_ClassComboBox.SelectedIndex;
+
            
         }
 
         private void OnClassChoice ( object sender, EventArgs e )
         {
-
+            var ComboBox= sender as ComboBox;
             Character.SelectedClass=(Character.CharacterClass)_RaceComboBox.SelectedIndex;
             Character.SetClassStats();
             DisplayStats();
@@ -76,12 +79,12 @@ namespace Cameron.AdventureGame.WinHost
         {
             if (Character != null)
             {
-                _StrengthListBox.Text= Character.Strength.ToString();
-                _AgilityListBox.Text= Character.Agility.ToString(); 
-                _IntellectListBox.Text=Character.Intelligence.ToString();
-                _CharismaListBox.Text= Character.Charisma.ToString();
-                _DefenseListBox.Text= Character.Defense.ToString();
-                _ConstitutionListBox.Text= Character.Constitution.ToString();
+                _StrengthUpDown.Text= Character.Strength.ToString();
+                _AgilityUpDown.Text= Character.Agility.ToString();
+                _IntellectUpDown.Text=Character.Intelligence.ToString();
+                _CharismaUpDown.Text= Character.Charisma.ToString();
+                _DefenseUpDown.Text= Character.Defense.ToString();
+                _ConstUpDown.Text= Character.Constitution.ToString();
             }
         }
 
@@ -91,23 +94,57 @@ namespace Cameron.AdventureGame.WinHost
             Character character= new Character();
           _RaceComboBox.DataSource=Enum.GetValues(typeof(Character.CharacterRace));
             _ClassComboBox.DataSource=Enum.GetValues(typeof(Character.CharacterClass));
+
+            AffixDataSource();
+        
         }
 
-        private void _StrengthListBox_SelectedIndexChanged ( object sender, EventArgs e )
-        {
-            AffixDataSource();
-        }
         private void AffixDataSource () {
-            _StrengthListBox.DataSource= Character.Strength;
-            _IntellectListBox.DataSource=Character.Intelligence;
-            _AgilityListBox.DataSource= Character.Agility;
-            _CharismaListBox.DataSource= Character.Charisma;
-            _DefenseListBox.DataSource= Character.Defense;
-            _ConstitutionListBox.DataSource= Character.Constitution;
+            
             DisplayStats();
         }
-    
-    
+
+        private void AvailableValidation ()
+        {
+            FreePointLabel.Text=Character.FreeStatusPoints.ToString();
+
+        }
+
+        private void _AgilityUpDown_ValueChanged ( object sender, EventArgs e )
+        {
+            Character.Agility = (int)_AgilityUpDown.Value;
+            AvailableValidation();
+        }
+
+        private void _IntellectUpDown_ValueChanged ( object sender, EventArgs e )
+        {
+            Character.Intelligence = (int)_IntellectUpDown.Value;
+            AvailableValidation();
+        }
+
+        private void _CharismaUpDown_ValueChanged ( object sender, EventArgs e )
+        {
+            Character.Charisma = (int)_CharismaUpDown.Value;
+            AvailableValidation();
+        }
+
+        private void _DefenseUpDown_ValueChanged ( object sender, EventArgs e )
+        {
+            Character.Defense= (int)_DefenseUpDown.Value;
+            AvailableValidation();
+        }
+
+        private void _ConstUpDown_ValueChanged ( object sender, EventArgs e )
+        {
+            Character.Constitution= (int)_ConstUpDown.Value;
+            AvailableValidation();
+        }
+
+        private void _StrengthUpDown_ValueChanged ( object sender, EventArgs e )
+        {
+            Character.Strength = (int)_StrengthUpDown.Value;
+            AvailableValidation();
+        }
     }
    
 }

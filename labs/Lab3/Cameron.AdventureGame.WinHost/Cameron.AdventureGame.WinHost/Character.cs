@@ -93,7 +93,7 @@ namespace Cameron.AdventureGame
         /// <summary>
         /// available status points to edit character
         /// </summary>
-        public int FreeStatusPoints { get; set; }
+        public int FreeStatusPoints { get { return 300- Strength- Intelligence- Defense-Agility-Constitution- Charisma; } }
         public object DataSource { get; internal set; }
         public void SetClassStats ()
         {
@@ -309,18 +309,8 @@ namespace Cameron.AdventureGame
 
         //}
 
-        /// <summary>
-        /// free status point validation
-        /// </summary>
-        private void CalcPoints ()
-        {
-            FreeStatusPoints= 300- Strength- Intelligence- Defense-Agility-Constitution- Charisma;
-
-
-
-
-        }
-
+        
+        
         /// <summary>
         /// method to increase status points on selected stat
         /// </summary>

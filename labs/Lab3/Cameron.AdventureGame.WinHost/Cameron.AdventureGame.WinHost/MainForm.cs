@@ -19,13 +19,8 @@ namespace Cameron.AdventureGame.WinHost
 
         private List<Character> _characterList;
 
-        public List<Character> CharacterList
-        {
-            get { 
-                return _characterList;
-            }
-            private set {; }
-        }
+        public List<Character> CharacterList { get; set; }= new List<Character>();
+        
 
         private void OnFileExit ( object sender, EventArgs e )
         {
@@ -45,8 +40,9 @@ namespace Cameron.AdventureGame.WinHost
         }
         private void OnOpeningNewCharacter (object sender, EventArgs e)
         {
-            var dlg = new CharacterForm();
+            var dlg = new CharacterForm(CharacterList);
             dlg.ShowDialog();
+            RefreshInterface();
         }
         private void OnAdd ()
         {
@@ -71,9 +67,13 @@ namespace Cameron.AdventureGame.WinHost
 
         public void RefreshInterface ( )
         {
-            _CharacterList.DataSource = null;
-            _CharacterList.DataSource = CharacterList;
-
+        //    _CharacterList.DataSource = null;
+        //    _CharacterList.DisplayMember = nameof(Character.CharacterName);
+        var selectedIndex = _CharacterListBox.SelectedIndex;
+            _CharacterListBox.DataSource = null;
+            _CharacterListBox.DataSource = CharacterList;
+            _CharacterListBox.DisplayMember =_character.ToString();
+            _CharacterListBox.SelectedIndex = selectedIndex;
 
         }
         private Character _character= new Character();
@@ -89,7 +89,15 @@ namespace Cameron.AdventureGame.WinHost
 
         private void _CharacterList_SelectedIndexChanged ( object sender, EventArgs e )
         {
-            RefreshInterface ( );
+            
+        }
+
+        private void OnEdit ( object sender, EventArgs e )
+        {
+           Character SelectedCharacter= _CharacterListBox.SelectedItem as Character;
+                    
+        
+        
         }
     }
 

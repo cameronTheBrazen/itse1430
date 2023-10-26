@@ -40,7 +40,8 @@ namespace Cameron.AdventureGame.WinHost
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.characterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._CharacterList = new System.Windows.Forms.ListBox();
+            this.ecitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._CharacterListBox = new System.Windows.Forms.ListBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,7 +65,7 @@ namespace Cameron.AdventureGame.WinHost
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(71, 36);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(71, 38);
             this.fileToolStripMenuItem.Text = "&File";
             // 
             // exitToolStripMenuItem
@@ -79,7 +80,7 @@ namespace Cameron.AdventureGame.WinHost
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(84, 36);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(84, 38);
             this.helpToolStripMenuItem.Text = "&Help";
             // 
             // aboutToolStripMenuItem
@@ -93,36 +94,44 @@ namespace Cameron.AdventureGame.WinHost
             // characterToolStripMenuItem
             // 
             this.characterToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.newToolStripMenuItem});
+            this.newToolStripMenuItem,
+            this.ecitToolStripMenuItem});
             this.characterToolStripMenuItem.Name = "characterToolStripMenuItem";
-            this.characterToolStripMenuItem.Size = new System.Drawing.Size(135, 36);
+            this.characterToolStripMenuItem.Size = new System.Drawing.Size(135, 38);
             this.characterToolStripMenuItem.Text = "&Character";
             // 
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(280, 44);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
             this.newToolStripMenuItem.Text = "New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.OnOpeningNewCharacter);
             // 
-            // _CharacterList
+            // ecitToolStripMenuItem
             // 
-            this._CharacterList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._CharacterList.FormattingEnabled = true;
-            this._CharacterList.ItemHeight = 25;
-            this._CharacterList.Location = new System.Drawing.Point(0, 40);
-            this._CharacterList.Name = "_CharacterList";
-            this._CharacterList.Size = new System.Drawing.Size(774, 489);
-            this._CharacterList.TabIndex = 1;
-            this._CharacterList.SelectedIndexChanged += new System.EventHandler(this._CharacterList_SelectedIndexChanged);
+            this.ecitToolStripMenuItem.Name = "ecitToolStripMenuItem";
+            this.ecitToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
+            this.ecitToolStripMenuItem.Text = "&Edit";
+            this.ecitToolStripMenuItem.Click += new System.EventHandler(this.OnEdit);
+            // 
+            // _CharacterListBox
+            // 
+            this._CharacterListBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._CharacterListBox.FormattingEnabled = true;
+            this._CharacterListBox.ItemHeight = 25;
+            this._CharacterListBox.Location = new System.Drawing.Point(0, 40);
+            this._CharacterListBox.Name = "_CharacterListBox";
+            this._CharacterListBox.Size = new System.Drawing.Size(774, 489);
+            this._CharacterListBox.TabIndex = 1;
+            this._CharacterListBox.SelectedIndexChanged += new System.EventHandler(this._CharacterList_SelectedIndexChanged);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(774, 529);
-            this.Controls.Add(this._CharacterList);
+            this.Controls.Add(this._CharacterListBox);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.MinimumSize = new System.Drawing.Size(300, 200);
@@ -143,9 +152,10 @@ namespace Cameron.AdventureGame.WinHost
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
-        private System.Windows.Forms.ListBox _CharacterList;
+        private System.Windows.Forms.ListBox _CharacterListBox;
         private System.Windows.Forms.ToolStripMenuItem characterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ecitToolStripMenuItem;
     }
 }
 
