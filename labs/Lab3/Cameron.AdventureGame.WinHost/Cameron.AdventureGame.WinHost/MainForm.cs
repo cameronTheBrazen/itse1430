@@ -94,10 +94,16 @@ namespace Cameron.AdventureGame.WinHost
 
         private void OnEdit ( object sender, EventArgs e )
         {
-           Character SelectedCharacter= _CharacterListBox.SelectedItem as Character;
-                    
-        
-        
+            if (CharacterList != null)
+            {
+
+                Character SelectedCharacter = _CharacterListBox.SelectedItem as Character;
+
+
+                var dlg = new EditForm(CharacterList, SelectedCharacter);
+                dlg.ShowDialog();
+                RefreshInterface();
+            }
         }
     }
 

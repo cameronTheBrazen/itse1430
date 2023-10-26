@@ -55,7 +55,7 @@ namespace Cameron.AdventureGame.WinHost
             this.characterToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(774, 40);
+            this.menuStrip1.Size = new System.Drawing.Size(774, 42);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -111,6 +111,7 @@ namespace Cameron.AdventureGame.WinHost
             // ecitToolStripMenuItem
             // 
             this.ecitToolStripMenuItem.Name = "ecitToolStripMenuItem";
+            this.ecitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
             this.ecitToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
             this.ecitToolStripMenuItem.Text = "&Edit";
             this.ecitToolStripMenuItem.Click += new System.EventHandler(this.OnEdit);
@@ -120,9 +121,9 @@ namespace Cameron.AdventureGame.WinHost
             this._CharacterListBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this._CharacterListBox.FormattingEnabled = true;
             this._CharacterListBox.ItemHeight = 25;
-            this._CharacterListBox.Location = new System.Drawing.Point(0, 40);
+            this._CharacterListBox.Location = new System.Drawing.Point(0, 42);
             this._CharacterListBox.Name = "_CharacterListBox";
-            this._CharacterListBox.Size = new System.Drawing.Size(774, 489);
+            this._CharacterListBox.Size = new System.Drawing.Size(774, 487);
             this._CharacterListBox.TabIndex = 1;
             this._CharacterListBox.SelectedIndexChanged += new System.EventHandler(this._CharacterList_SelectedIndexChanged);
             // 
