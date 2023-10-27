@@ -40,9 +40,8 @@ namespace Cameron.AdventureGame.WinHost
         }
         private void OnOpeningNewCharacter (object sender, EventArgs e)
         {
-            var dlg = new CharacterForm(CharacterList);
+            var dlg = new CharacterForm();
             dlg.ShowDialog();
-            RefreshInterface();
         }
         private void OnAdd ()
         {
@@ -67,43 +66,25 @@ namespace Cameron.AdventureGame.WinHost
 
         public void RefreshInterface ( )
         {
-        //    _CharacterList.DataSource = null;
-        //    _CharacterList.DisplayMember = nameof(Character.CharacterName);
-        var selectedIndex = _CharacterListBox.SelectedIndex;
-            _CharacterListBox.DataSource = null;
-            _CharacterListBox.DataSource = CharacterList;
-            _CharacterListBox.DisplayMember =_character.ToString();
-            _CharacterListBox.SelectedIndex = selectedIndex;
+            _CharacterList.DataSource = null;
+            _CharacterList.DataSource = CharacterList;
+
 
         }
         private Character _character= new Character();
         
 
-        private void OnMainForm_Load ( object sender, EventArgs e )
+        
+        protected override void OnLoad ( EventArgs e )
         {
-            if ( _character != null )
-            {
-                RefreshInterface();
-            }
+            base.OnLoad(e);
+            RefreshInterface();
         }
+    }
 
         private void _CharacterList_SelectedIndexChanged ( object sender, EventArgs e )
         {
-            
-        }
-
-        private void OnEdit ( object sender, EventArgs e )
-        {
-            if (CharacterList != null)
-            {
-
-                Character SelectedCharacter = _CharacterListBox.SelectedItem as Character;
-
-
-                var dlg = new EditForm(CharacterList, SelectedCharacter);
-                dlg.ShowDialog();
-                RefreshInterface();
-            }
+            RefreshInterface ( );
         }
     }
 

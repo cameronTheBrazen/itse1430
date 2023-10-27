@@ -1,3 +1,5 @@
+using MovieLibrary.Memory;
+
 namespace MovieLibrary.WinHost
 {
     public partial class MainForm : Form
@@ -7,7 +9,7 @@ namespace MovieLibrary.WinHost
             InitializeComponent();
         }
 
-        private MovieDatabase _database = new MovieDatabase();
+        private MemoryMovieDatabase _database = new MemoryMovieDatabase();
 
 
         private void OnAddMovie ( object sender, EventArgs e )
@@ -26,18 +28,28 @@ namespace MovieLibrary.WinHost
             RefreshMovies();
         }
 
+
         private void OnEditMovie ( object sender, EventArgs e )
         {
             var movie = GetSelectedMovie();
-            if (movie== null)
+            if (movie == null)
                 return;
 
             var dlg = new MovieForm();
-            dlg.Movie=movie;
-            if (dlg.ShowDialog()!= DialogResult.OK)
-                return;
+            dlg.Movie = movie;
 
-            _database.Update(dlg.Movie);
+            do
+            {
+                if (dlg.ShowDialog(this) != DialogResult.OK)
+                    return;
+
+                //Edit movie in library
+                var error = _database.Update(movie.Id, dlg.Movie);
+                if (String.IsNullOrEmpty(error))
+                    break;
+                MessageBox.Show(this, error, "Updated Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            } while (true);
+
             RefreshMovies();
         }
 
@@ -89,7 +101,7 @@ namespace MovieLibrary.WinHost
             RefreshMovies();
         }
 
-
+        
     }
 
 }
