@@ -30,9 +30,9 @@ namespace Cameron.AdventureGame.WinHost
             var button= sender as Button;   
             
             Character.CharacterName = _CharacterNameTxtBox.Text;
-            Character.SelectedRace= (Character.CharacterRace)_ClassComboBox.SelectedIndex;
+            Character.SelectedRace= (Character.CharacterRace)_RaceComboBox.SelectedIndex;
             
-            Character.SelectedClass=(Character.CharacterClass)_RaceComboBox.SelectedIndex;
+            Character.SelectedClass=(Character.CharacterClass)_ClassComboBox.SelectedIndex;
             Character.SetClassStats();
 
             if (!Character.TryValidate(out var error))
