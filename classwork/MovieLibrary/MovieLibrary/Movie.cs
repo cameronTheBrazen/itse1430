@@ -1,6 +1,8 @@
-﻿namespace MovieLibrary
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace MovieLibrary
 {/// <summary> represents a single movie</summary>
-    public class Movie : ValidatableObject
+    public class Movie : IValidatableObject
     {
         /// <summary>
         ///  Initializes the movie class        
@@ -125,7 +127,7 @@
 
         // }
         ///<summary>Validates the movie instance</summary>
-        public override bool TryValidate ( out string message )
+        public bool TryValidate ( out string message )
         {
 
             if (String.IsNullOrEmpty(_title))
@@ -158,6 +160,30 @@
             return $"{Title}[{ReleaseYear}]";
         }
 
+        public IEnumerable<ValidationResult> Validate ( ValidationContext validationContext )
+        {
+            if (String.IsNullOrEmpty(_title))
+            { yield return new ValidationResult("Title is required!");
+            }
+            if (ReleaseYear<MinimumReleaseYear)
+            {
+                yield return new ValidationResult($"Release Year must be greater than {MinimumReleaseYear}");
+
+                
+            }
+            if (RunLength<0)
+            {
+                yield return new ValidationResult("length must be at least 0");
+                
+                     }
+
+            if (ReleaseYear<1940&& !_isBlackAndWhite)
+            {
+                yield return new ValidationResult("movies before 1940 must be black and white");
+                
+            }
+            
+        }
     }
 
 }

@@ -116,27 +116,31 @@ public class MemoryMovieDatabase
 
     /// <summary>Gets all the movies in the database.</summary>
     /// <returns>The list of movies.</returns>
-    public Movie[] GetAll ()
+    public IEnumerable<Movie> GetAll ()
     {
-        var count = _movies.Count;
+        //var count = _movies.Count;
 
-        ////How many are not null
-        //var count = 0;
-        //for (var index = 0; index < _movies.Length; ++index)
-        //    if (_movies[index] != null)
-        //        ++count;        
+        //////How many are not null
+        ////var count = 0;
+        ////for (var index = 0; index < _movies.Length; ++index)
+        ////    if (_movies[index] != null)
+        ////        ++count;        
 
-        //Clone array
-        var items = new Movie[_movies.Count];
-        var itemIndex = 0;
-        foreach (var movie in _movies)
-            items[itemIndex++] = Clone(movie);
+        ////Clone array
+        //var items = new Movie[_movies.Count];
+        //var itemIndex = 0;
+        //foreach (var movie in _movies)
+        //    items[itemIndex++] = Clone(movie);
 
-        //for (var index = 0; index < _movies.Length; ++index)
-        //    if (_movies[index] != null)
-        //        items[itemIndex++] = Clone(_movies[index]);
-
-        return items;
+        ////for (var index = 0; index < _movies.Length; ++index)
+        ////    if (_movies[index] != null)
+        ////        items[itemIndex++] = Clone(_movies[index]);
+        var items= new List<Movie>();
+        foreach(var movie in _movies)
+        {
+            yield return Clone(movie);
+        }
+        
     }
 
     /// <summary>Updates a movie in the database.</summary>
