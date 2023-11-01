@@ -208,16 +208,7 @@
             this.label10.Size = new System.Drawing.Size(233, 25);
             this.label10.TabIndex = 28;
             this.label10.Text = "Available Status Points";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(530, 105);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(245, 51);
-            this.button1.TabIndex = 29;
-            this.button1.Text = "Randomize";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.OnRandom);
+            
             // 
             // _StrengthUpDown
             // 

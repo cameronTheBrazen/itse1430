@@ -52,12 +52,7 @@ namespace Cameron.AdventureGame.WinHost
             Close();
         }
 
-        private void OnRandom ( object sender, EventArgs e )
-        {
-           
-            Character.RandomToon();
-
-        }
+        
 
         
         private void OnRaceChoice ( object sender, EventArgs e )
