@@ -9,7 +9,7 @@ namespace MovieLibrary.WinHost
             InitializeComponent();
         }
 
-        private MemoryMovieDatabase _database = new MemoryMovieDatabase();
+        private IMovieDatabase _database = new MemoryMovieDatabase();
 
 
         private void OnAddMovie ( object sender, EventArgs e )
@@ -91,7 +91,9 @@ namespace MovieLibrary.WinHost
         {
             _lstMovies.DataSource=null;
             var movies = _database.GetAll();
-            _lstMovies.DataSource= movies;
+            var source = new BindingSource() { DataSource = movies };
+            
+            _lstMovies.DataSource= source;
 
         }
 

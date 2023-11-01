@@ -20,6 +20,11 @@ namespace Cameron.AdventureGame.WinHost
             _characterList = CharacterList;
             
         }
+
+        public CharacterForm ()
+        {
+        }
+
         private int _freePoints;
         private List<Character> _characterList;
         public int FreePoints { get; set; }

@@ -1,4 +1,6 @@
-﻿namespace MovieLibrary.WinHost
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace MovieLibrary.WinHost
 {
     public partial class MovieForm : Form
     {
@@ -42,11 +44,10 @@
             movie.ReleaseYear=GetInt32(_textBoxReleaseYear, 0);
             movie.RunLength=GetInt32(_textBoxLength, -1);
             movie.IsBlackAndWhite=checkBox1.Checked;
-
-
-            if (!movie.TryValidate(out var error))
-            {
-                MessageBox.Show(error, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if(!new ObjectValidator().TryValidate(movie, out var results))
+           {
+                var error = results.First();
+                MessageBox.Show(this, error.ErrorMessage, "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             Movie=movie;

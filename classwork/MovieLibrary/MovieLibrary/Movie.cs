@@ -121,40 +121,7 @@ namespace MovieLibrary
         }
 
 
-        ///<summary>Download meta data from the internet</summary>
-        //private void DownloadMetaData ()
-        // {
-
-        // }
-        ///<summary>Validates the movie instance</summary>
-        public bool TryValidate ( out string message )
-        {
-
-            if (String.IsNullOrEmpty(_title))
-            {
-                message = "Title is required!";
-                return false;
-            }
-            if (ReleaseYear<MinimumReleaseYear)
-            {
-
-                message= $"Release Year must be greater than {MinimumReleaseYear}";
-            }
-            if (RunLength<0)
-            {
-                message= "length must be at least 0";
-                return false;
-            }
-
-            if (ReleaseYear<1940&& !_isBlackAndWhite)
-            {
-                message= "movies before 1940 must be black and white";
-                return false;
-            }
-            message="";
-            return true;
-
-        }
+       
         public override string ToString ()
         {
             return $"{Title}[{ReleaseYear}]";

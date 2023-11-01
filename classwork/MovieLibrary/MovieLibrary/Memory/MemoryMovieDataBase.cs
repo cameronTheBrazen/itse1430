@@ -3,7 +3,7 @@
 namespace MovieLibrary.Memory;
 
 /// <summary>Represents a database of movies.</summary>
-public class MemoryMovieDatabase
+public class MemoryMovieDatabase : MovieDatabase
 {
     /// <summary>Initializes an instance of the <see cref="MemoryMovieDatabase"/> class.</summary>
     public MemoryMovieDatabase ()
@@ -68,32 +68,12 @@ public class MemoryMovieDatabase
     /// Movie must be valid.
     /// Movie title must be unique.
     /// </remarks>
-    public string Add ( Movie movie )
+    protected override Movie AddCore ( Movie movie )
     {
-        //Validate: null, invalid movie
-        if (movie == null)
-            return "Movie is null";
-        if (!movie.TryValidate(out var error))
-            return error;
-
-        //Title must be unique
-        var existing = FindByTitle(movie.Title);
-        if (existing != null)
-            return "Movie title must be unique";
-
-        ////Find an empty slot
-        //for (var index = 0; index < _movies.Length; ++index)
-        //{
-        //    if (_movies[index] == null)
-        //    {
-        //        movie.Id = _id++;
-        //        _movies[index] = Clone(movie);
-        //        return "";
-        //    };
-        //};
+        
         movie.Id = _id++;
         _movies.Add(Clone(movie));
-        return "";
+        return movie;
     }
 
     /// <summary>Deletes a movie from the database.</summary>
@@ -102,82 +82,37 @@ public class MemoryMovieDatabase
     /// Id must be > 0.
     /// If the movie does not exist then nothing happens.
     /// </remarks>
-    public void Delete ( int id )
+    protected override void DeleteCore ( int id )
     {
-        //TODO:Id > 0
-
-        //var index = FindById(id);
-        //if (index >= 0)
-        //    _movies[index] = null;
+        
         var movie = FindById(id);
         if (movie != null)
             _movies.Remove(movie);  //Reference equality applies
     }
-
-    /// <summary>Gets all the movies in the database.</summary>
-    /// <returns>The list of movies.</returns>
-    public IEnumerable<Movie> GetAll ()
+    protected override Movie Get ( int id ) {
+        var movie = FindById(id);
+            if(movie==null ) {
+            return null;
+            }
+        return Clone(movie);
+    }
+   
+    protected override IEnumerable<Movie> GetAll ()
     {
-        //var count = _movies.Count;
-
-        //////How many are not null
-        ////var count = 0;
-        ////for (var index = 0; index < _movies.Length; ++index)
-        ////    if (_movies[index] != null)
-        ////        ++count;        
-
-        ////Clone array
-        //var items = new Movie[_movies.Count];
-        //var itemIndex = 0;
-        //foreach (var movie in _movies)
-        //    items[itemIndex++] = Clone(movie);
-
-        ////for (var index = 0; index < _movies.Length; ++index)
-        ////    if (_movies[index] != null)
-        ////        items[itemIndex++] = Clone(_movies[index]);
-        var items= new List<Movie>();
-        foreach(var movie in _movies)
+        
+        var items = new List<Movie>();
+        foreach (var movie in _movies)
         {
             yield return Clone(movie);
         }
-        
+
     }
 
-    /// <summary>Updates a movie in the database.</summary>
-    /// <param name="id">ID of the movie to update.</param>
-    /// <param name="movie">The updated movie information.</param>
-    /// <returns>Empty string if successful or an error message otherwise.</returns>
-    /// <remarks>
-    /// Id must be > 0.
-    /// Movie cannot be null.
-    /// Movie must be valid.
-    /// Movie must exist.
-    /// Movie title must be unique.
-    /// </remarks>
-    public string Update ( int id, Movie movie )
+
+    protected override void UpdateCore ( int id, Movie movie )
     {
-        //Validate: null, invalid movie
-        if (id <= 0)
-            return "ID is invalid";
-
-        if (movie == null)
-            return "Movie is null";
-        if (!movie.TryValidate(out var error))
-            return error;
-
-        //Title must be unique (and not self)
-        var existing = FindByTitle(movie.Title);
-        if (existing != null && existing.Id != id)
-            return "Movie title must be unique";
-
-        //Movie must exist
-        existing = FindById(id);
-        if (existing == null)
-            return "Movie not found";
-
-        //Update
+        var existing = FindById(id);
         Copy(existing, movie);
-        return "";
     }
 
     #region Private Members
@@ -202,7 +137,7 @@ public class MemoryMovieDatabase
         target.Genre = source.Genre;
     }
 
-    private Movie FindById ( int id )
+    protected override Movie FindById ( int id )
     {
         //for (var index = 0; index < _movies.Length; ++index)
         //    if (_movies[index]?.Id == id)
@@ -214,7 +149,7 @@ public class MemoryMovieDatabase
         return null;
     }
 
-    private Movie FindByTitle ( string title )
+    protected override Movie FindByTitle ( string title )
     {
         //for (var index = 0; index < _movies.Length; ++index)
         //    if (String.Equals(title, _movies[index]?.Title, StringComparison.OrdinalIgnoreCase))
@@ -225,6 +160,8 @@ public class MemoryMovieDatabase
 
         return null;
     }
+
+    
 
     //private readonly Movie[] _movies = new Movie[100];
 
