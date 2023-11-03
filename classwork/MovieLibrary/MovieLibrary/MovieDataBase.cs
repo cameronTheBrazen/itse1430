@@ -3,14 +3,14 @@
 namespace MovieLibrary;
 
 /// <summary>Represents a database of movies.</summary>
-abstract class MovieDatabase : IMovieDatabase
+public abstract class MovieDatabase : IMovieDatabase
 { 
     public virtual string Add ( Movie movie )
     {
         //Validate: null, invalid movie
         if (movie == null)
             return "Movie is null";
-        if (!new ObjectValidator().TryValidate(movie, out var error))
+        if (!ObjectValidator.TryValidate(movie, out var error))
             return error.First().ErrorMessage;
 
         //Title must be unique
@@ -30,7 +30,7 @@ abstract class MovieDatabase : IMovieDatabase
     }
     protected  abstract void DeleteCore ( int id );
 
-    protected virtual Movie Get ( int id )
+    public virtual Movie Get ( int id )
     {
         if (id<=0)
         {
@@ -39,15 +39,15 @@ abstract class MovieDatabase : IMovieDatabase
         return GetCore(id);
     }
     protected abstract Movie GetCore ( int id );
-    protected virtual IEnumerable<Movie> GetAll ()
+    public virtual IEnumerable<Movie> GetAll ()
     {
 
-        return GetAllCore();
+        return GetAllCore()??Enumerable.Empty<Movie>();
 
     }
     protected abstract IEnumerable<Movie> GetAllCore ();
     
-   protected virtual string Update ( int id, Movie movie )
+   public virtual string Update ( int id, Movie movie )
     {
         //Validate: null, invalid movie
         if (id <= 0)
@@ -55,7 +55,7 @@ abstract class MovieDatabase : IMovieDatabase
 
         if (movie == null)
             return "Movie is null";
-        if (!new ObjectValidator().TryValidate(movie, out var error))
+        if (!ObjectValidator.TryValidate(movie, out var error))
             return error.First().ErrorMessage;
 
         //Title must be unique (and not self)

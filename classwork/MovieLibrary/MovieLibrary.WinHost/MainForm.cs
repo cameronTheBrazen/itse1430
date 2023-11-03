@@ -87,20 +87,23 @@ namespace MovieLibrary.WinHost
         {
             Close();
         }
-        private void RefreshMovies ()
+        private void RefreshMovies (bool initial=false)
         {
             _lstMovies.DataSource=null;
             var movies = _database.GetAll();
-            var source = new BindingSource() { DataSource = movies };
-            
-            _lstMovies.DataSource= source;
+            if (initial && !movies.Any() && Confirm("seed", "do you want to seed the database with movies"))
+            {
+                _database.Seed();
+                movies=_database.GetAll();
+            }
+            _lstMovies.DataSource= movies.ToArray();
 
         }
 
         protected override void OnLoad ( EventArgs e )
         {
             base.OnLoad(e);
-            RefreshMovies();
+            RefreshMovies(true);
         }
 
         
