@@ -21,9 +21,9 @@ namespace MovieLibrary.WinHost
                     return;
                 //_movie= dlg.Movie;
                 var error = _database.Add(dlg.Movie);
-                if (String.IsNullOrEmpty(error))
-                { break; }
-                MessageBox.Show(this, error, "Add Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //if (String.IsNullOrEmpty(error))
+                 break; 
+                //MessageBox.Show(this, error, "Add Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
             } while (true);
             RefreshMovies();
         }
@@ -44,10 +44,10 @@ namespace MovieLibrary.WinHost
                     return;
 
                 //Edit movie in library
-                var error = _database.Update(movie.Id, dlg.Movie);
-                if (String.IsNullOrEmpty(error))
+                _database.Update(movie.Id, dlg.Movie);
+                
                     break;
-                MessageBox.Show(this, error, "Updated Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+               
             } while (true);
 
             RefreshMovies();
