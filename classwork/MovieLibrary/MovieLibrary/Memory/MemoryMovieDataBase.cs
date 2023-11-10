@@ -1,68 +1,53 @@
-﻿using System;
+﻿/*
+* ITSE 1430 
+* Fall 2023
+*/
 
 namespace MovieLibrary.Memory;
 
 /// <summary>Represents a database of movies.</summary>
 public class MemoryMovieDatabase : MovieDatabase
 {
-    /// <summary>Initializes an instance of the <see cref="MemoryMovieDatabase"/> class.</summary>
-    public MemoryMovieDatabase ()
-    {
-        
-    }
-
-    /// <summary>Adds a movie to the database.</summary>
-    /// <param name="movie">The movie to add.</param>
-    /// <returns>Empty string if successful or an error message otherwise.</returns>
-    /// <remarks>
-    /// Movie cannot be null.
-    /// Movie must be valid.
-    /// Movie title must be unique.
-    /// </remarks>
+    /// <inheritdoc />
     protected override Movie AddCore ( Movie movie )
     {
-        
         movie.Id = _id++;
         _movies.Add(Clone(movie));
+
         return movie;
     }
 
-    /// <summary>Deletes a movie from the database.</summary>
-    /// <param name="id">ID of the movie to delete.</param>
-    /// <remarks>
-    /// Id must be > 0.
-    /// If the movie does not exist then nothing happens.
-    /// </remarks>
+    /// <inheritdoc />
     protected override void DeleteCore ( int id )
     {
-        
         var movie = FindById(id);
         if (movie != null)
             _movies.Remove(movie);  //Reference equality applies
     }
-    public override Movie Get ( int id ) {
+
+    /// <inheritdoc />
+    protected override Movie GetCore ( int id )
+    {
         var movie = FindById(id);
-            if(movie==null ) {
+        if (movie == null)
             return null;
-            }
+
         return Clone(movie);
     }
-   
-    public override IEnumerable<Movie> GetAll ()
-    {
-        
-        var items = new List<Movie>();
-        foreach (var movie in _movies)
-        {
-            yield return Clone(movie);
-        }
 
+    /// <inheritdoc />
+    protected override IEnumerable<Movie> GetAllCore ()
+    {
+
+        return from movie in _movies
+               select Clone(movie);
     }
 
-
+    /// <inheritdoc />
     protected override void UpdateCore ( int id, Movie movie )
     {
         var existing = FindById(id);
+
         Copy(existing, movie);
     }
 
@@ -90,33 +75,37 @@ public class MemoryMovieDatabase : MovieDatabase
 
     protected override Movie FindById ( int id )
     {
-        //for (var index = 0; index < _movies.Length; ++index)
-        //    if (_movies[index]?.Id == id)
-        //        return index;
-        foreach (var movie in _movies)
-            if (movie.Id == id)
-                return movie;
+        return _movies.FirstOrDefault( x => x.Id == id);
 
-        return null;
+        //foreach (var movie in _movies)
+        //    if (movie.Id == id)
+        //        return movie;
+
+        //return null;
+
+        //return _movies.Where (x=> x.Id == id)
+        //        .Select(x=>x).FirstOrDefault();
+
+        //return _movies.Where(MatchMovie)
+        //     .Select(SelectMovie)
+        //     .FirstOrDefault();
+
+
     }
+    //private bool MatchMovie(Movie movie )
+    //{
+    //    return movie.Id == id;
+    //}
+    //private Movie SelectMovie(Movie movie )
+    //{
+    //    return movie;
+    //}
 
     protected override Movie FindByTitle ( string title )
     {
-        //for (var index = 0; index < _movies.Length; ++index)
-        //    if (String.Equals(title, _movies[index]?.Title, StringComparison.OrdinalIgnoreCase))
-        //        return _movies[index];
-        foreach (var movie in _movies)
-            if (String.Equals(title, movie.Title, StringComparison.OrdinalIgnoreCase))
-                return movie;
-
-        return null;
+        return _movies.FirstOrDefault(x=>String.Equals(title, x.Title, StringComparison.OrdinalIgnoreCase));
     }
 
-    
-
-    //private readonly Movie[] _movies = new Movie[100];
-
-    //List<T> generic type, resizable array of type T
     private readonly List<Movie> _movies = new List<Movie>();
     private int _id = 1;
     #endregion

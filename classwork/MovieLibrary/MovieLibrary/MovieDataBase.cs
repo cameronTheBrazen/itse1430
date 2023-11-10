@@ -1,10 +1,13 @@
-﻿using System;
-
+﻿/*
+* ITSE 1430 
+* Fall 2023
+*/
 namespace MovieLibrary;
 
 /// <summary>Represents a database of movies.</summary>
 public abstract class MovieDatabase : IMovieDatabase
-{ 
+{
+    /// <inheritdoc />
     public virtual string Add ( Movie movie )
     {
         //Validate: null, invalid movie
@@ -17,41 +20,43 @@ public abstract class MovieDatabase : IMovieDatabase
         var existing = FindByTitle(movie.Title);
         if (existing != null)
             return "Movie title must be unique";
-        
-        var newMovie=AddCore(movie);
+
+        //HACK: This is a hack for now
+        var newMovie = AddCore(movie);
+        movie.Id = newMovie.Id;
         return "";
     }
-    protected abstract Movie AddCore ( Movie movie );
-   
-    public void Delete ( int id )
+
+    /// <inheritdoc />
+    public virtual void Delete ( int id )
     {
-
-        DeleteCore(id);  
+        //TODO:Id > 0
+        DeleteCore(id);
     }
-    protected  abstract void DeleteCore ( int id );
 
+    /// <inheritdoc />
     public virtual Movie Get ( int id )
     {
-        if (id<=0)
-        {
-           return null;
-        }
+        if (id <= 0)
+            return null;
+
         return GetCore(id);
     }
-    protected abstract Movie GetCore ( int id );
+
+    /// <inheritdoc />
     public virtual IEnumerable<Movie> GetAll ()
     {
-
-        return GetAllCore()??Enumerable.Empty<Movie>();
-
+        return GetAllCore() ?? Enumerable.Empty<Movie>(); // new Movie[0];
     }
-    protected abstract IEnumerable<Movie> GetAllCore ();
-    
-   public virtual string Update ( int id, Movie movie )
+
+    /// <inheritdoc />
+    public virtual string Update ( int id, Movie movie )
     {
         //Validate: null, invalid movie
         if (id <= 0)
             return "ID is invalid";
+
+        //var whatever = new ObjectValidator();
 
         if (movie == null)
             return "Movie is null";
@@ -68,29 +73,44 @@ public abstract class MovieDatabase : IMovieDatabase
         if (existing == null)
             return "Movie not found";
 
-        //Update
         UpdateCore(id, movie);
         return "";
     }
-    protected abstract void  UpdateCore ( int id, Movie movie );
 
 
+    #region Protected Members
 
+    /// <summary>Adds a movie to the database.</summary>
+    /// <param name="movie">Movie to add.</param>
+    /// <returns>Updated movie.</returns>
+    protected abstract Movie AddCore ( Movie movie );
 
-    #region Private Members
+    /// <summary>Deletes a movie.</summary>
+    /// <param name="id">ID of the movie.</param>
+    protected abstract void DeleteCore ( int id );
 
+    /// <summary>Gets a movie.</summary>
+    /// <param name="id">ID of the movie.</param>
+    /// <returns>The movie, if found.</returns>
+    protected abstract Movie GetCore ( int id );
 
+    /// <summary>Gets the movies in the database.</summary>
+    /// <returns>The list of movies.</returns>
+    protected abstract IEnumerable<Movie> GetAllCore ();
 
+    /// <summary>Updates a movie in the database.</summary>
+    /// <param name="id">ID of the movie to update.</param>
+    /// <param name="movie">The updated movie information.</param>
+    protected abstract void UpdateCore ( int id, Movie movie );
 
-
+    /// <summary>Finds a movie by its ID.</summary>
+    /// <param name="id">ID of the movie.</param>
+    /// <returns>The movie, if any.</returns>
     protected abstract Movie FindById ( int id );
 
-
+    /// <summary>Finds a movie by its title.</summary>
+    /// <param name="title">Title of the movie.</param>
+    /// <returns>The movie, if any.</returns>
     protected abstract Movie FindByTitle ( string title );
-
-    
-
-   
-    
     #endregion
 }

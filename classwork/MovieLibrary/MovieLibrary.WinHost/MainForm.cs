@@ -90,14 +90,17 @@ namespace MovieLibrary.WinHost
         private void RefreshMovies (bool initial=false)
         {
             _lstMovies.DataSource=null;
-            var movies = _database.GetAll();
+            IEnumerable<Movie> movies = _database.GetAll();
             if (initial && !movies.Any() && Confirm("seed", "do you want to seed the database with movies"))
             {
                 _database.Seed();
                 movies=_database.GetAll();
             }
+           
+            movies= from m in movies
+                    orderby m.Title
+                    select m;
             _lstMovies.DataSource= movies.ToArray();
-
         }
 
         protected override void OnLoad ( EventArgs e )
