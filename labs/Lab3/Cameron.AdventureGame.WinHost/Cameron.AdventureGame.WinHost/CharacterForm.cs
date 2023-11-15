@@ -16,7 +16,7 @@ namespace Cameron.AdventureGame.WinHost
         public CharacterForm ( List<Character> CharacterList)
         {
             InitializeComponent();
-            Character= new Character();
+            Character = new Character();
             _characterList = CharacterList;
             
         }
@@ -95,7 +95,7 @@ namespace Cameron.AdventureGame.WinHost
           _RaceComboBox.DataSource=Enum.GetValues(typeof(Character.CharacterRace));
             _ClassComboBox.DataSource=Enum.GetValues(typeof(Character.CharacterClass));
 
-            AffixDataSource();
+            
         
         }
 
@@ -106,7 +106,7 @@ namespace Cameron.AdventureGame.WinHost
 
         private void AvailableValidation ()
         {
-            FreePointLabel.Text=Character.FreeStatusPoints.ToString();
+            FreePointLabel.Text = Character.FreeStatusPoints.ToString();
 
         }
 
@@ -146,5 +146,5 @@ namespace Cameron.AdventureGame.WinHost
             AvailableValidation();
         }
     }
-   //test of git
+   
 }

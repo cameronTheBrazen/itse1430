@@ -61,7 +61,7 @@
             ((System.ComponentModel.ISupportInitialize)(this._ConstUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.characterBindingSource)).BeginInit();
-            this.SuspendLayout();
+           this.SuspendLayout();
             // 
             // _CharacterNameTxtBox
             // 
@@ -292,10 +292,7 @@
             // errorProvider1
             // 
             this.errorProvider1.ContainerControl = this;
-            // 
-            // characterBindingSource
-            // 
-            this.characterBindingSource.DataSource = typeof(Cameron.AdventureGame.Character);
+            
             // 
             // CharacterForm
             // 

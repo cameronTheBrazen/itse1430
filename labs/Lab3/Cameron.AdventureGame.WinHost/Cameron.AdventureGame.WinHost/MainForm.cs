@@ -20,7 +20,7 @@ namespace Cameron.AdventureGame.WinHost
         private List<Character> _characterList;
 
         public List<Character> _CharacterList { get; set; } = new List<Character>();
-
+        public Character _Character;
 
         private void OnFileExit(object sender, EventArgs e)
         {
@@ -40,7 +40,8 @@ namespace Cameron.AdventureGame.WinHost
         }
         private void OnOpeningNewCharacter(object sender, EventArgs e)
         {
-            var dlg = new CharacterForm();
+            var dlg = new CharacterForm(_CharacterList);
+            
             dlg.ShowDialog();
         }
 
@@ -85,9 +86,9 @@ namespace Cameron.AdventureGame.WinHost
 
         private void OnEdit(object sender,EventArgs e)
         { 
-            Character _Character= _CharacterListBox.SelectedIndex as Character;
-            var edit = new EditForm(_CharacterList,_Character);
-            edit.ShowDialog;
+            _character = GetCharacter();
+            var edit = new EditForm(_CharacterList,_character);
+            edit.ShowDialog();
     
         }
     }
