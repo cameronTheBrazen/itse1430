@@ -34,10 +34,10 @@ namespace Cameron.AdventureGame.WinHost
         }
 
         List<Character> _characterList;
-        private Character _character=null;
+       
         public Character _Character { get; private set; }
         public int FreePoints { get; set; }
-        private int _freePoints;
+        
         private void AvailableValidation ()
         {
             FreePointLabel.Text=_Character.FreeStatusPoints.ToString();

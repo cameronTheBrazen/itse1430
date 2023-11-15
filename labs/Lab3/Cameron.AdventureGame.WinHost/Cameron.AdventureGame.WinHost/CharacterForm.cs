@@ -25,9 +25,9 @@ namespace Cameron.AdventureGame.WinHost
         {
         }
 
-        private int _freePoints;
+       
         private List<Character> _characterList;
-        public int FreePoints { get; set; }
+        public int _FreePoints { get; set; }
         public Character Character { get; private set; }
        
         private void OnSave (object sender, EventArgs e)

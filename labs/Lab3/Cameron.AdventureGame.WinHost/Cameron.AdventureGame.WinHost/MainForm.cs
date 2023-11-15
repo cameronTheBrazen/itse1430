@@ -19,17 +19,17 @@ namespace Cameron.AdventureGame.WinHost
 
         private List<Character> _characterList;
 
-        public List<Character> _CharacterList { get; set; }= new List<Character>();
-        
+        public List<Character> _CharacterList { get; set; } = new List<Character>();
 
-        private void OnFileExit ( object sender, EventArgs e )
+
+        private void OnFileExit(object sender, EventArgs e)
         {
             Close();
 
         }
-        private void OnClosing( object sender, FormClosingEventArgs e )
+        private void OnClosing(object sender, FormClosingEventArgs e)
         {
-            DialogResult result = MessageBox.Show("Are you sure you want to close the application?", 
+            DialogResult result = MessageBox.Show("Are you sure you want to close the application?",
                 "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (result == DialogResult.No)
@@ -38,55 +38,57 @@ namespace Cameron.AdventureGame.WinHost
             }
             base.OnFormClosing(e);
         }
-        private void OnOpeningNewCharacter (object sender, EventArgs e)
+        private void OnOpeningNewCharacter(object sender, EventArgs e)
         {
             var dlg = new CharacterForm();
             dlg.ShowDialog();
         }
-        private void OnAdd ()
-        {
-            
-            RefreshInterface();
-        }   
 
-        private void OnAbout ( object sender, EventArgs e )
+
+        private void OnAbout(object sender, EventArgs e)
         {
             var about = new AboutBox1();
             about.ShowDialog();
         }
-        private Character GetCharacter (){
+        private Character GetCharacter() {
             return _character;
         }
 
-        public List<Character> Get_characterList ()
+        public List<Character> Get_characterList()
         {
-            RefreshInterface ();
+            RefreshInterface();
             return _characterList;
         }
 
-        public void RefreshInterface ( )
+        public void RefreshInterface()
         {
             _CharacterListBox.DataSource = null;
             _CharacterListBox.DataSource = _CharacterList;
 
 
         }
-        private Character _character= new Character();
-        
+        private Character _character = new Character();
 
-        
-        protected override void OnLoad ( EventArgs e )
+
+
+        protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
             RefreshInterface();
         }
-    
 
-        private void _CharacterList_SelectedIndexChanged ( object sender, EventArgs e )
+
+        private void _CharacterList_SelectedIndexChanged(object sender, EventArgs e)
         {
             RefreshInterface();
         }
-    }
 
-  
+        private void OnEdit(object sender,EventArgs e)
+        { 
+            Character _Character= _CharacterListBox.SelectedIndex as Character;
+            var edit = new EditForm(_CharacterList,_Character);
+            edit.ShowDialog;
+    
+        }
+    }
 }
