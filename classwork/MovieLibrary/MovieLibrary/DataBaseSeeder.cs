@@ -8,21 +8,24 @@ public static class DataBaseSeeder
     {
         var movies = new[] {
                 new Movie() {
+                    
                     Title = "Jaws",
                     ReleaseYear = 1977,
                     Rating = Rating.PG,
                     RunLength = 120,
                 },
                 new Movie() {
+                    
                     Title = "Dune",
                     ReleaseYear = 1983,
                     Rating = Rating.PG13,
                     RunLength = 210,
                 },
                 new Movie() {
+                    
                     Title = "Star Wars",
                     ReleaseYear = 1977,
-                    Rating = Rating.PG,
+                    Rating = Rating.R,
                     RunLength = 150,
                 },
         };

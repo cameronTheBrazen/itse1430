@@ -9,7 +9,7 @@ namespace MovieLibrary.WinHost
             InitializeComponent();
         }
 
-        private IMovieDatabase _database = new MemoryMovieDatabase();
+        private IMovieDatabase _database = new IO.CsvMovieDatabase("movies.csv");
 
 
         private void OnAddMovie ( object sender, EventArgs e )

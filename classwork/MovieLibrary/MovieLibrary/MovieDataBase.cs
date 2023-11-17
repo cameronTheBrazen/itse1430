@@ -10,80 +10,98 @@ public abstract class MovieDatabase : IMovieDatabase
     /// <inheritdoc />
     public virtual Movie Add ( Movie movie )
     {
+        //throw new NotImplementedException();
+
         //Validate: null, invalid movie
         if (movie == null)
-        throw  new ArgumentNullException(nameof(movie));
+            throw new ArgumentNullException(nameof(movie));
 
         ObjectValidator.Validate(movie);
-            
 
         //Title must be unique
         var existing = FindByTitle(movie.Title);
         if (existing != null)
-            throw new InvalidOperationException("Movie title must be unique.");
+            throw new InvalidOperationException("Movie title must be unique");
 
-        //HACK: This is a hack for now
-        return AddCore(movie);
-       
-        
+        //TODO: Could also fail
+        try
+        {
+            return AddCore(movie);
+        } catch (Exception e)
+        {
+            throw new InvalidOperationException("Add failed", e);
+        };
     }
 
     /// <inheritdoc />
     public virtual void Delete ( int id )
     {
-        if( id <=0)
+        if (id <= 0)
+            throw new ArgumentOutOfRangeException(nameof(id), "ID must be greater than 0");
+
+        try
         {
-            throw new ArgumentOutOfRangeException(nameof(id), "ID must be greater than 0" );
-        }
-        DeleteCore(id);
+            DeleteCore(id);
+        } catch (Exception e)
+        {
+            throw new InvalidOperationException("Delete failed", e);
+        };
     }
 
     /// <inheritdoc />
     public virtual Movie Get ( int id )
     {
-        if (id <=0)
-        {
-            throw new ArgumentOutOfRangeException(nameof(id), "ID must be greater than 0" );
-        }
+        if (id <= 0)
+            throw new ArgumentOutOfRangeException(nameof(id), "ID must be greater than 0");
 
-        return GetCore(id);
+        try
+        {
+            return GetCore(id);
+        } catch (Exception e)
+        {
+            throw new InvalidOperationException("Get failed", e);
+        };
     }
 
     /// <inheritdoc />
-    public virtual IEnumerable<Movie> GetAll ()
-    {
-        return GetAllCore() ?? Enumerable.Empty<Movie>(); // new Movie[0];
-    }
+    //public virtual IEnumerable<Movie> GetAll ()
+    //{
+    //    return GetAllCore() ?? Enumerable.Empty<Movie>(); // new Movie[0];
+    //}
+    //Expression body ::= member who uses lambda syntax
+    public virtual IEnumerable<Movie> GetAll () => GetAllCore() ?? Enumerable.Empty<Movie>();
 
     /// <inheritdoc />
     public virtual void Update ( int id, Movie movie )
     {
         //Validate: null, invalid movie
-        if (id <=0)
-        {
+        if (id <= 0)
             throw new ArgumentOutOfRangeException(nameof(id), "ID must be greater than 0");
-        }
-        //var whatever = new ObjectValidator();
 
         if (movie == null)
             throw new ArgumentNullException(nameof(movie));
+
         ObjectValidator.Validate(movie);
-            
 
         //Title must be unique (and not self)
         var existing = FindByTitle(movie.Title);
         if (existing != null && existing.Id != id)
-          throw new InvalidOperationException("Movie title must be unique");
+            throw new InvalidOperationException("Movie title must be unique");
 
         //Movie must exist
         existing = FindById(id);
         if (existing == null)
-            throw new ArgumentException("movie not found.", nameof(id));
+            throw new ArgumentException("Movie not found", nameof(id));
 
-        UpdateCore(id, movie);
-        
+        //TODO: Could still fails
+        try
+        {
+            UpdateCore(id, movie);
+        } catch (Exception e)
+        {
+            throw new InvalidOperationException("Update failed", e);
+        };
     }
-
 
     #region Protected Members
 
