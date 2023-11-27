@@ -1,0 +1,11 @@
+E:\lab4\Nile\obj\Debug\net6.0\Nile.GeneratedMSBuildEditorConfig.editorconfig
+E:\lab4\Nile\obj\Debug\net6.0\Nile.AssemblyInfoInputs.cache
+E:\lab4\Nile\obj\Debug\net6.0\Nile.AssemblyInfo.cs
+E:\lab4\Nile\obj\Debug\net6.0\Nile.csproj.CoreCompileInputs.cache
+E:\lab4\Nile\bin\Debug\net6.0\Nile.deps.json
+E:\lab4\Nile\bin\Debug\net6.0\Nile.dll
+E:\lab4\Nile\bin\Debug\net6.0\Nile.pdb
+E:\lab4\Nile\obj\Debug\net6.0\Nile.dll
+E:\lab4\Nile\obj\Debug\net6.0\refint\Nile.dll
+E:\lab4\Nile\obj\Debug\net6.0\Nile.pdb
+E:\lab4\Nile\obj\Debug\net6.0\ref\Nile.dll
