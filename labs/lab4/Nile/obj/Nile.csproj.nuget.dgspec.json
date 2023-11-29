@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "E:\\lab4\\Nile\\Nile.csproj": {}
+    "C:\\Users\\t2329571_s\\source\\repos\\itse1430\\labs\\lab4\\Nile\\Nile.csproj": {}
   },
   "projects": {
-    "E:\\lab4\\Nile\\Nile.csproj": {
+    "C:\\Users\\t2329571_s\\source\\repos\\itse1430\\labs\\lab4\\Nile\\Nile.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\lab4\\Nile\\Nile.csproj",
+        "projectUniqueName": "C:\\Users\\t2329571_s\\source\\repos\\itse1430\\labs\\lab4\\Nile\\Nile.csproj",
         "projectName": "Nile",
-        "projectPath": "E:\\lab4\\Nile\\Nile.csproj",
-        "packagesPath": "C:\\Users\\Cameron\\.nuget\\packages\\",
-        "outputPath": "E:\\lab4\\Nile\\obj\\",
+        "projectPath": "C:\\Users\\t2329571_s\\source\\repos\\itse1430\\labs\\lab4\\Nile\\Nile.csproj",
+        "packagesPath": "C:\\Users\\t2329571_s\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\t2329571_s\\source\\repos\\itse1430\\labs\\lab4\\Nile\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Cameron\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\t2329571_s\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -45,8 +49,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -55,7 +58,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }

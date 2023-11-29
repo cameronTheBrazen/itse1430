@@ -75,7 +75,7 @@ namespace Nile.Windows
             if(String.IsNullOrEmpty(product.Name))
              { throw new InvalidDataException("Product Name Cannot be empty!"); }
 
-            //TODO: check with PROf about this
+           
              Product = product;
              DialogResult = DialogResult.OK;
             Close();

@@ -2,6 +2,10 @@
 
 using System.Collections;
 
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+
 namespace MovieLibrary.WinHost;
 
 internal static class Program
@@ -12,12 +16,17 @@ internal static class Program
     [STAThread]
     static void Main ()
     {
+        IHost host = Host.CreateDefaultBuilder().Build();
+        s_configuration = host.Services.GetRequiredService<IConfiguration>();
+
         // To customize application configuration such as set high DPI settings or default font,
         // see https://aka.ms/applicationconfiguration.
         ApplicationConfiguration.Initialize();
         Application.Run(new MainForm());
 
-        ArrayList al;
+       
 
     }
+    private static IConfiguration s_configuration;
+    public static string GetConnectionString(string name)=>s_configuration.GetConnectionString(name);   
 }
