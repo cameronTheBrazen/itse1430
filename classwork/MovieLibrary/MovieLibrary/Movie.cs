@@ -38,6 +38,8 @@ namespace MovieLibrary
         private bool _initialized;
         private string _title;
         /// <summary>title of movie.</summary>
+        [Required(AllowEmptyStrings =false)]
+        [StringLength(100)]
         public string Title
         {
             get {
@@ -81,6 +83,7 @@ namespace MovieLibrary
 
         private Rating _rating;
         /// <summary>rating of movie.</summary>
+        [StringLength(20)]
         public Rating Rating
         {
             get {
@@ -100,6 +103,7 @@ namespace MovieLibrary
         /// <summary>
         /// LENGTH of the movie
         /// </summary>
+        [Range(1,Int32.MaxValue)]
         public int RunLength
         {
             get;
@@ -110,6 +114,7 @@ namespace MovieLibrary
         /// <summary>
         /// year of movie release
         /// </summary>
+        [Range(MinimumReleaseYear,2100)]
         public int ReleaseYear { get; set; } = MinimumReleaseYear;
         private bool _isBlackAndWhite = false;
         public bool IsBlackAndWhite { get; set; }
@@ -129,20 +134,9 @@ namespace MovieLibrary
 
         public IEnumerable<ValidationResult> Validate ( ValidationContext validationContext )
         {
-            if (String.IsNullOrEmpty(_title))
-            { yield return new ValidationResult("Title is required!");
-            }
-            if (ReleaseYear<MinimumReleaseYear)
-            {
-                yield return new ValidationResult($"Release Year must be greater than {MinimumReleaseYear}");
-
-                
-            }
-            if (RunLength<0)
-            {
-                yield return new ValidationResult("length must be at least 0");
-                
-                     }
+            
+           
+            
 
             if (ReleaseYear<1940&& !_isBlackAndWhite)
             {
